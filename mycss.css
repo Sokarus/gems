@@ -1,0 +1,564 @@
+div.limiter1 {
+    position: absolute;
+    left: 17%;
+    top: 30%;
+}
+
+span.login100-form-title {
+    font-size: 100%;
+}
+
+div.wrap-login100 {
+    width: 200px;
+}
+
+div.block1 {
+    position: relative;
+    left: 2%;
+    top: 3%;
+}
+
+div.block2 {
+    position: absolute;
+    left: 20%;
+    top: 48px;
+}
+
+div.block3 {
+    position: relative;
+    left: 11%;
+    top: 3%;
+}
+
+p.x1 {
+    font-size: 200%;
+    color: white;
+}
+
+p.x2 {
+    font-size: 115%;
+    color: white;
+    position: relative;
+    left: 23%;
+}
+
+p.x3 {
+    font-size: 100%;
+    color: white;
+    position: relative;
+    right: 30px;
+}
+
+p.x4 {
+    font-size: 100%;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+div.container-login100 {
+    position: fixed;
+}
+
+.layer1 {
+    position: relative;
+    left: 11%;
+}
+
+.layer2 {
+    position: absolute;
+    right: 43%;
+    top: 7%;
+}
+
+.layer3 {
+    position: absolute;
+    right: 30%;
+    top: 7%;
+}
+
+.layer4 {
+    position: absolute;
+    right: 20%;
+    top: 7%;
+}
+
+.layer5 {
+    position: absolute;
+    right: 10%;
+    top: 7%;
+}
+
+.layer6 {
+    position: absolute;
+    right: 50%;
+    top: 20%;
+}
+
+.layer7 {
+    position: relative;
+    width: 15%;
+    left: 11%;
+    top: 7%;
+}
+
+.layer8 {
+    position: absolute;
+    width: 3%;
+    left: 24%;
+    top: 13%;
+}
+
+#footer {
+    position: fixed;
+    /* Фиксированное положение */
+    left: 0;
+    bottom: 0;
+    /* Левый нижний угол */
+    padding: 10px;
+    /* Поля вокруг текста */
+    background: #39b54a;
+    /* Цвет фона */
+    color: #fff;
+    /* Цвет текста */
+    width: 100%;
+    /* Ширина слоя */
+}
+
+a.button28 {
+    position: absolute;
+    top: 49%;
+    left: 495px;
+    display: inline-block;
+    font-size: 90%;
+    font-weight: 700;
+    color: rgb(209, 209, 217);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0, 0, 0, .2);
+    padding: .5em 1em;
+    outline: none;
+    border-radius: 3px;
+    background: linear-gradient(rgb(110, 112, 120), rgb(81, 81, 86)) rgb(110, 112, 120);
+    box-shadow: 0 1px rgba(255, 255, 255, .2) inset, 0 3px 5px rgba(0, 1, 6, .5), 0 0 1px 1px rgba(0, 1, 6, .2);
+    transition: .2s ease-in-out;
+}
+
+a.button28:hover:not(:active) {
+    background: linear-gradient(rgb(126, 126, 134), rgb(70, 71, 76)) rgb(126, 126, 134);
+}
+
+a.button29 {
+    position: relative;
+    display: inline-block;
+    font-size: 90%;
+    font-weight: 700;
+    color: rgb(209, 209, 217);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0, 0, 0, .2);
+    padding: .2em 1em;
+    outline: none;
+    border-radius: 5px;
+    background: linear-gradient(rgb(110, 112, 120), rgb(81, 81, 86)) rgb(110, 112, 120);
+    box-shadow: 0 1px rgba(255, 255, 255, .2) inset, 0 3px 5px rgba(0, 1, 6, .5), 0 0 1px 1px rgba(0, 1, 6, .2);
+    transition: .2s ease-in-out;
+}
+
+a.button29:hover:not(:active) {
+    background: linear-gradient(rgb(126, 126, 134), rgb(70, 71, 76)) rgb(126, 126, 134);
+}
+
+a.button27 {
+    position: relative;
+    display: inline-block;
+    font-size: 90%;
+    font-weight: 700;
+    color: rgb(209, 209, 217);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0, 0, 0, .2);
+    padding: .2em 1em;
+    outline: none;
+    border-radius: 5px;
+    background: linear-gradient(rgb(110, 112, 120), rgb(81, 81, 86)) rgb(110, 112, 120);
+    box-shadow: 0 1px rgba(255, 255, 255, .2) inset, 0 3px 5px rgba(0, 1, 6, .5), 0 0 1px 1px rgba(0, 1, 6, .2);
+    transition: .2s ease-in-out;
+}
+
+a.button27:hover:not(:active) {
+    background: linear-gradient(rgb(126, 126, 134), rgb(70, 71, 76)) rgb(126, 126, 134);
+}
+
+a.button26 {
+    position: absolute;
+    top: 38%;
+    left: 200px;
+    display: inline-block;
+    font-size: 100%;
+    font-weight: 400;
+    color: rgb(209, 209, 217);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0, 0, 0, .2);
+    padding: .5em 1em;
+    outline: none;
+    border-radius: 3px;
+    background: linear-gradient(rgb(110, 112, 120), rgb(81, 81, 86)) rgb(110, 112, 120);
+    box-shadow: 0 1px rgba(255, 255, 255, .2) inset, 0 3px 5px rgba(0, 1, 6, .5), 0 0 1px 1px rgba(0, 1, 6, .2);
+    transition: .2s ease-in-out;
+}
+
+::selection{
+    background: transparent;
+}
+
+a.button26:hover:not(:active) {
+    background: linear-gradient(rgb(126, 126, 134), rgb(70, 71, 76)) rgb(126, 126, 134);
+}
+
+form.back1 {
+    background-color: gray;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+form.back2 {
+    background-color: gray;
+    border-radius: 15px;
+    padding: 5px;
+    position: absolute;
+    top: 34px;
+    right: 30%;
+    width: 100px;
+    height: 270px;
+    background: rgba(0, 0, 0, 0.596);
+    /* Цвет фона */
+    border: 3px solid #fff;
+    /* Белая рамка */
+    border-radius: 10px;
+    /* Радиус скругления */
+    display: inline-block;
+    border: 2px solid transparent;
+    /* Невидимая рамка */
+}
+
+form.back3 {
+    background-color: rgba(77, 72, 72, 0.623);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+p.amethyst {
+    color: violet;
+}
+
+p.sapphire {
+    color: blue;
+}
+
+p.emerald {
+    color: green;
+}
+
+p.ruby {
+    color: red;
+}
+
+p.diamond {
+    color: white;
+}
+
+p.topaz {
+    color: yellow;
+}
+
+p.amethyst1 {
+    font-size: 115%;
+    color: violet;
+    position: absolute;
+    left: 0%;
+    top: 6%;
+}
+
+p.sapphire1 {
+    font-size: 115%;
+    color: blue;
+    position: absolute;
+    left: 0%;
+    top: 22%;
+}
+
+p.emerald1 {
+    font-size: 115%;
+    color: green;
+    position: absolute;
+    left: 0%;
+    top: 39%;
+}
+
+p.ruby1 {
+    font-size: 115%;
+    color: red;
+    position: absolute;
+    left: 0%;
+    top: 56%;
+}
+
+p.diamond1 {
+    font-size: 115%;
+    color: white;
+    position: absolute;
+    left: 0%;
+    top: 72%;
+}
+
+p.topaz1 {
+    font-size: 115%;
+    color: yellow;
+    position: absolute;
+    left: 0%;
+    top: 89%;
+}
+
+p.amethyst2 {
+    font-size: 115%;
+    color: violet;
+}
+
+p.sapphire2 {
+    font-size: 115%;
+    color: blue;
+}
+
+p.emerald2 {
+    font-size: 115%;
+    color: green;
+}
+
+p.ruby2 {
+    font-size: 115%;
+    color: red;
+}
+
+p.diamond2 {
+    font-size: 115%;
+    color: white;
+}
+
+p.topaz2 {
+    font-size: 115%;
+    color: yellow;
+}
+
+p.amethyst3 {
+    font-size: 130%;
+    color: violet;
+    position: absolute;
+    left: 90%;
+    top: 7px;
+}
+
+p.sapphire3 {
+    font-size: 130%;
+    color: blue;
+    position: absolute;
+    left: 90%;
+    top: 45px;
+}
+
+p.emerald3 {
+    font-size: 130%;
+    color: green;
+    position: absolute;
+    left: 90%;
+    top: 85px;
+}
+
+p.ruby3 {
+    font-size: 130%;
+    color: red;
+    position: absolute;
+    left: 90%;
+    top: 123px;
+}
+
+p.diamond3 {
+    font-size: 130%;
+    color: white;
+    position: absolute;
+    left: 90%;
+    top: 161px;
+}
+
+p.topaz3 {
+    font-size: 130%;
+    color: yellow;
+    position: absolute;
+    left: 90%;
+    top: 200px;
+}
+
+span.intAmethyst {
+    font-size: 115%;
+    color: violet;
+    position: absolute;
+    left: 0%;
+    top: 6%;
+}
+
+span.intSapphire {
+    font-size: 115%;
+    color: blue;
+    position: absolute;
+    left: 0%;
+    top: 22%;
+}
+
+span.intEmerald {
+    font-size: 115%;
+    color: green;
+    position: absolute;
+    left: 0%;
+    top: 39%;
+}
+
+span.intRuby {
+    font-size: 115%;
+    color: red;
+    position: absolute;
+    left: 0%;
+    top: 56%;
+}
+
+span.intDiamond {
+    font-size: 115%;
+    color: white;
+    position: absolute;
+    left: 0%;
+    top: 72%;
+}
+
+span.intTopaz {
+    font-size: 115%;
+    color: yellow;
+    position: absolute;
+    left: 0%;
+    top: 89%;
+}
+
+div.intStones {
+    position: absolute;
+    top: 34px;
+    left: 100%;
+    width: 30px;
+    height: 270px;
+    /* Размеры */
+    background: rgba(0, 0, 0, 0.596);
+    /* Цвет фона */
+    border: 3px solid #fff;
+    /* Белая рамка */
+    border-radius: 10px;
+    /* Радиус скругления */
+    display: inline-block;
+    border: 2px solid transparent;
+    /* Невидимая рамка */
+}
+
+div.intStones:hover {
+    border: 2px solid black;
+    /* Чёрная рамка */
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 50%;
+    margin: 20px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 37px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -14px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+}

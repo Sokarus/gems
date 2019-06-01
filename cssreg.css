@@ -1,0 +1,11 @@
+ body {
+     background-image: url('form/images/elf.jpg');
+     background-size: 100%;
+ }
+ p.x {
+    font-size: 200%;
+    text-align: center;
+    text-transform: uppercase;
+  
+    display: block;
+}
