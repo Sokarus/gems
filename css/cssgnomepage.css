@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(45deg, rgba(13, 26, 25, 0.897), rgba(50, 243, 66, 0.308)), url(form/images/gnome.jpg);
+    background: linear-gradient(45deg, rgba(13, 26, 25, 0.897), rgba(50, 243, 66, 0.308)), url(pics/gnome.jpg);
     background-size: cover;
     line-height: 1.3;
 }

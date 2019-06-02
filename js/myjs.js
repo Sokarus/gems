@@ -68,3 +68,8 @@ function getValue() {
 
     }
 }
+function getUserLogin(elementIn, elementOut) {
+    var inner = document.getElementById(elementIn);
+    var outer = document.getElementById(elementOut);
+    outer.value = inner.innerHTML;
+}

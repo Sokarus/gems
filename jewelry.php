@@ -5,10 +5,14 @@ session_start();
 loginCheck();
 
 $tohello = $_SESSION['login'];
-$stmt = $pdo->prepare("SELECT login FROM users where login=(?)");
-$stmt->execute([$tohello]);
-$row = $stmt->fetch();
-$herelogin = $row[0];
+
+$sqlCheck = $pdo->prepare("SELECT race FROM users WHERE login='$tohello'");
+$sqlCheck->execute([]);
+$row = $sqlCheck->fetch();
+if ($row[0] == "elf") {
+    header("Location: /elfpage.php");
+    die("Эльфу сюда нельзя!");
+}
 
 if (isset($_POST["save"])) {
     $date = date("Y-m-d H:i:s");
@@ -21,37 +25,37 @@ if (isset($_POST["save"])) {
     $stonesarr = [$amethyst, $sapphire, $emerald, $ruby, $diamond, $topaz];
     if ($stonesarr[0] > 0) {
         for ($i = 1; $i <= $stonesarr[0]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd) VALUES ('amethyst', ?, ?)");
+            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, status) VALUES ('amethyst', ?, ?, 'free')");
             $addStones->execute([$tohello, $date]);
         }
     }
     if ($stonesarr[1] > 0) {
         for ($i = 1; $i <= $stonesarr[1]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd) VALUES ('sapphire', ?, ?)");
+            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, status) VALUES ('sapphire', ?, ?, 'free')");
             $addStones->execute([$tohello, $date]);
         }
     }
     if ($stonesarr[2] > 0) {
         for ($i = 1; $i <= $stonesarr[2]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd) VALUES ('emerald', ?, ?)");
+            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, status) VALUES ('emerald', ?, ?, 'free')");
             $addStones->execute([$tohello, $date]);
         }
     }
     if ($stonesarr[3] > 0) {
         for ($i = 1; $i <= $stonesarr[3]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd) VALUES ('ruby', ?, ?)");
+            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, status) VALUES ('ruby', ?, ?, 'free')");
             $addStones->execute([$tohello, $date]);
         }
     }
     if ($stonesarr[4] > 0) {
         for ($i = 1; $i <= $stonesarr[4]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd) VALUES ('diamond', ?, ?)");
+            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, status) VALUES ('diamond', ?, ?, 'free')");
             $addStones->execute([$tohello, $date]);
         }
     }
     if ($stonesarr[5] > 0) {
         for ($i = 1; $i <= $stonesarr[5]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd) VALUES ('topaz', ?, ?)");
+            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, status) VALUES ('topaz', ?, ?, 'free')");
             $addStones->execute([$tohello, $date]);
         }
     }
@@ -63,7 +67,7 @@ if (isset($_POST["save"])) {
 <div class="jumbotron">
     <div class="container">
         <div class="layer1">
-            <p class="x1">Привет, <?php echo "$herelogin" ?> !</p>
+            <p class="x1">Привет, <?php echo "$tohello" ?> !</p>
         </div>
     </div>
 </div>

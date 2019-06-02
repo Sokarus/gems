@@ -1,10 +1,10 @@
  body {
-    background: linear-gradient(45deg, rgba(103, 0, 31, .8), rgba(34, 101, 163, .5)), url(form/images/elf.jpg);
+    background: linear-gradient(45deg, rgba(103, 0, 31, .8), rgba(34, 101, 163, .5)), url(pics/elf.jpg);
     background-size: cover;
  }
 
  p.x {
-    font-size: 200%;
+    font-size: 100%;
     text-align: center;
     text-transform: uppercase;
     display: block;

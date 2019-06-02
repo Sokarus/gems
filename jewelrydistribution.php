@@ -6,7 +6,7 @@ loginCheck();
 
 $tohello = $_SESSION['login'];
 
-$getinfo = $pdo->prepare("SELECT * FROM stonesinfo");
+$getinfo = $pdo->prepare("SELECT id, type, dateadd, gnome, elf FROM stonesinfo WHERE status='free'");
 $getinfo->execute([]);
 
 ?>
@@ -27,13 +27,8 @@ $getinfo->execute([]);
         <th>ID</th>
         <th>TYPE</th>
         <th>DATEREG</th>
-        <th>DATEGIVE</th>
-        <th>DATEACC</th>
         <th>GNOME</th>
-        <th>MGNOME</th>
-        <th>ALG OR MG</th>
         <th>ELF</th>
-        <th>STATUS</th>
     </thead>
     <tbody>
         <?php while ($row = $getinfo->fetch(PDO::FETCH_ASSOC)) { ?>
@@ -46,5 +41,9 @@ $getinfo->execute([]);
     </tbody>
 </table>
 </div>
+
+<button class="login100-form-btn" type="submit" name="save3">
+                Распределить
+            </button>
 
 <?php include "footer.php"; ?>

@@ -5,6 +5,7 @@ session_start();
 loginCheck();
 
 $tohello = $_SESSION['login'];
+
 $stmt = $pdo->prepare("SELECT name , login , datereg , dateaut FROM users where login=(?)");
 $stmt->execute([$tohello]);
 $row = $stmt->fetch();

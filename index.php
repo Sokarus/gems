@@ -29,6 +29,9 @@ try {
   if ($row[0] == "gnome") {
     header("Location: /gnomepage.php");
   }
+  if ($row[0] == "mastergnome") {
+    header("Location: /alljewelry.php");
+  }
 } catch (Exception $e) {
   echo 'Ошибка авторизации: ',  $e->getMessage();
 }

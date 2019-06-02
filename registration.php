@@ -31,6 +31,9 @@ try {
     if ($answer == "gnome") {
       header("Location: /autorization.php");
     }
+    if ($answer == "mastergnome") {
+      header("Location: /autorization.php");
+    }
   }
 } catch (Exception $e) {
   echo 'Ошибка регистрации: ',  $e->getMessage();
@@ -69,7 +72,7 @@ try {
         </div>
 
         <p class="x"><input type="radio" name="answer" value="elf">Эльф
-          <input type="radio" name="answer" value="gnome">Гном<Br></p>
+          <input type="radio" name="answer" value="gnome">Гном<input type="radio" name="answer" value="mastergnome">Мастер-гном<Br></p>
 
         <div class="container-login100-form-btn m-t-1">
           <button class="login100-form-btn" type="submit" name="save">

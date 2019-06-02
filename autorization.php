@@ -6,7 +6,6 @@ try {
     if (isset($_POST['save'])) {
         $login = $_POST['login'];
         $password = sha1($_POST['password']);
-        $user = [$login, $password];
         $stmt = $pdo->prepare("SELECT login , password FROM users where login=(?)");
         $stmt->execute([$login]);
         $row = $stmt->fetch();
@@ -27,6 +26,9 @@ try {
         }
         if ($row[0] == "gnome") {
             header("Location: /gnomepage.php");
+        }
+        if ($row[0] == "mastergnome") {
+            header("Location: /alljewelry.php");
         }
     }
 } catch (Exception $e) {
