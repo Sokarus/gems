@@ -1,14 +1,19 @@
 <?php if (!$_SESSION['login']) {
     require 'dbconn.php';
 }
-if (isset($_POST['save'])) {
-    $login = $_POST['login'];
-    $password = md5($_POST['password']);
-    $user = [$login, $password];
-    $stmt = $pdo->prepare("SELECT login , password FROM users where login=(?)");
-    $stmt->execute([$login]);
-    $row = $stmt->fetch();
-    if ($row['login'] == $login && $row['password'] == $password) {
+
+try {
+    if (isset($_POST['save'])) {
+        $login = $_POST['login'];
+        $password = sha1($_POST['password']);
+        $user = [$login, $password];
+        $stmt = $pdo->prepare("SELECT login , password FROM users where login=(?)");
+        $stmt->execute([$login]);
+        $row = $stmt->fetch();
+    }
+    if ($row['login'] !== $login || $row['password'] !== $password) {
+        throw new Exception('Неверный логин или пароль!');
+    } else {
         $date = date("Y-m-d H:i:s");
         session_start();
         $_SESSION['login'] = $row['login'];
@@ -23,11 +28,13 @@ if (isset($_POST['save'])) {
         if ($row[0] == "gnome") {
             header("Location: /gnomepage.php");
         }
-    } else echo "<script>alert(\"Неверный логин или пароль!\");</script>";
+    }
+} catch (Exception $e) {
+    echo 'Ошибка авторизации: ', $e->getMessage();
 }
-include "header.php";
-?>
-<link rel="stylesheet" type="text/css" href="cssreg.css">
+
+include "header.php"; ?>
+<link rel="stylesheet" type="text/css" href="css/cssreg.css">
 
 <div class="limiter">
     <div class="container-login100">

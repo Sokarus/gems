@@ -1,26 +1,23 @@
 body {
-    background: black;
+    background: linear-gradient(45deg, rgba(103, 0, 31, .8), rgba(34, 101, 163, .5)), url(pics/nature.jpg); 
+    background-size: cover;
 }
 
 a {
-    text-decoration: none;
-    outline: none;
-    display: inline-block;
-    width: 500px;
-    height: 10px;
     line-height: 40px;
-    border-radius: 900px;
+    border-radius: 300px;
     margin: 30px 50px;
     font-family: 'Montserrat', sans-serif;
     font-size: 21px;
     text-transform: uppercase;
     text-align: center;
-    letter-spacing: 15px;
+
     font-weight: 10;
     color: #524f4e;
     background: white;
     box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
     transition: .5s;
+padding: 5px;
 }
 
 a:hover {

@@ -1,0 +1,14 @@
+body {
+    background: url(form/images/jewelry.png);
+    background-size: 100%;
+}
+
+div.container {
+    margin: 0%;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+div.limiter1 {
+padding-left: 30px;
+}

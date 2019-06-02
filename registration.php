@@ -1,37 +1,43 @@
 <?php require 'dbconn.php';
-if (isset($_POST['save'])) {
-  $name = $_POST['name'];
-  $login = $_POST['login'];
-  $password = md5($_POST['password']);
-  $password2 = md5($_POST['password2']);
-  $answer = $_POST['answer'];
-  $stmt = $pdo->prepare("SELECT login FROM users where login=(?)");
-  $stmt->execute([$login]);
-  $row = $stmt->fetch();
-  if ($password == $password2) { // по порядку 
-    if ($row['login'] !== $login) {
-      if ($answer) {
-        $date = date("Y-m-d H:i:s");
-        $stmt = $pdo->prepare('INSERT INTO users (name, login, password, race, datereg) VALUES (?, ?, ?, ?, ?)');
-        $stmt->execute([$name, $login, $password, $answer, $date]);
-        if ($answer == "elf") {
-          $addlogin = $pdo->prepare('INSERT INTO userstones (login) VALUES (?)');
-          $addlogin->execute([$login]);
-        }
-        header("Location: /autorization.php");
-      } else {
-        echo "<script>alert(\"Пользователь не выбрал рассу!\");</script>";
-      }
-    } else {
-      echo "<script>alert(\"Пользователь с таким логином уже существует!\");</script>";
+$name = $_POST['name'];
+$login = $_POST['login'];
+$password = sha1($_POST['password']);
+$password2 = sha1($_POST['password2']);
+$answer = $_POST['answer'];
+$stmt = $pdo->prepare("SELECT login FROM users where login=(?)");
+$stmt->execute([$login]);
+$row = $stmt->fetch();
+
+try {
+  if (isset($_POST['save'])) {
+    if ($password !== $password2) {
+      throw new Exception('Пароли не совпадают!');
     }
-  } else {
-    echo "<script>alert(\"Пароли не совпадают!\");</script>";
+    if ($row['login'] == $login) {
+      throw new Exception('Пользователь с таким логином уже существует!');
+    }
+    if ($answer) {
+      $date = date("Y-m-d H:i:s");
+      $stmt = $pdo->prepare('INSERT INTO users (name, login, password, race, datereg) VALUES (?, ?, ?, ?, ?)');
+      $stmt->execute([$name, $login, $password, $answer, $date]);
+    } else {
+      throw new Exception('Пользователь не выбрал рассу!');
+    }
+    if ($answer == "elf") {
+      $addlogin = $pdo->prepare('INSERT INTO userstones (login, amethyst, diamond, emerald, ruby, sapphire, topaz) VALUES (?, ?, ?, ?, ?, ?, ?)');
+      $addlogin->execute([$login, "0.16", "0.16", "0.16" ,"0.16" ,"0.16" ,"0.16"]);
+      header("Location: /autorization.php");
+    }
+    if ($answer == "gnome") {
+      header("Location: /autorization.php");
+    }
   }
+} catch (Exception $e) {
+  echo 'Ошибка регистрации: ',  $e->getMessage();
 }
 ?>
 <?php include 'header.php'; ?>
-<link rel="stylesheet" type="text/css" href="cssreg.css">
+<link rel="stylesheet" type="text/css" href="css/cssreg.css">
 
 <div>
   <div class="container-login102">

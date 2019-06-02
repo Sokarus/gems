@@ -2,7 +2,7 @@
 require 'functionsphp.php';
 
 session_start();
-loginCheck(); 
+loginCheck();
 
 $tohello = $_SESSION['login'];
 $stmt = $pdo->prepare("SELECT name , login , datereg , dateaut FROM users where login=(?)");
@@ -22,87 +22,89 @@ $hereRuby = $rowstones[3];
 $hereSapphire = $rowstones[4];
 $hereTopaz = $rowstones[5];
 
-if (isset($_POST['save1'])) {
-    $name = $_POST['name'];
-    if ($name !== "") {
-        if (strlen($name) < 30) {
-            if (strlen($name) > 1) {
-                if (preg_match('|^[-A-Za-z0-9_]*$|', $name)) {
-                    $changename = $pdo->prepare("UPDATE users SET name='$name' WHERE login=(?)");
-                    $changename->execute([$herelogin]);
-                    echo "<script>alert(\"Имя успешно изменено!\");</script>";
-                    header("Location: /elfpage.php");
-                } else {
-                    echo "<script>alert(\"На английском, пожалуйста\");</script>";
-                }
-            } else {
-                echo "<script>alert(\"Имя должно быть больше 1 символа!\");</script>";
-            }
-        } else {
-            echo "<script>alert(\"Имя должно быть меньше 30 символов!\");</script>";
+try {
+    if (isset($_POST['save1'])) {
+        $name = $_POST['name'];
+        if ($name == "") {
+            throw new Exception('Введите имя!');
         }
-    } else {
-        echo "<script>alert(\"Введите имя!\");</script>";
+        if (strlen($name) >= 30) {
+            throw new Exception('Имя должно быть меньше 30 символов!');
+        }
+        if (strlen($name) <= 1) {
+            throw new Exception('Имя должно быть больше 1 символа!');
+        }
+        if (preg_match('|^[-A-Za-z0-9_]*$|', $name)) {
+            $changename = $pdo->prepare("UPDATE users SET name='$name' WHERE login=(?)");
+            $changename->execute([$herelogin]);
+            echo "<script>alert(\"Имя успешно изменено!\");</script>";
+            header("Location: /elfpage.php");
+        } else {
+            throw new Exception('На английском, пожалуйста!');
+        }
     }
+} catch (Exception $e) {
+    echo 'Ошибка ввода имени: ',  $e->getMessage();
 }
 
-if (isset($_POST['save2'])) {
-    $login = $_POST['login'];
-    $stmt = $pdo->query("SELECT login FROM users where login='$login'");
-    $row = $stmt->fetch();
-    if ($row['login'] !== $login) {
-        if ($login !== "") {
-            if (strlen($login) < 20) {
-                if (strlen($login) > 2) {
-                    if (preg_match('|^[-A-Za-z0-9_]*$|', $login)) {
-                        $changelogin = $pdo->prepare("UPDATE users SET login=(?) WHERE login='$herelogin'");
-                        $changelogin->execute([$login]);
-                        $changeloginstones = $pdo->prepare("UPDATE userstones SET login=(?) WHERE login='$herelogin'");
-                        $changeloginstones->execute([$login]);
-                        echo "<script>alert(\"Логин успешно изменён!\");</script>";
-                        unset($_SESSION['login']);
-                        $_SESSION['login'] = $login;
-                        header("Location: /elfpage.php");
-                    } else {
-                        echo "<script>alert(\"На английском, пожалуйста\");</script>";
-                    }
-                } else {
-                    echo "<script>alert(\"Логин должен быть больше 2 символов!\");</script>";
-                }
-            } else {
-                echo "<script>alert(\"Логин должен быть меньше 20 символов!\");</script>";
-            }
-        } else {
-            echo "<script>alert(\"Введите логин!\");</script>";
+try {
+    if (isset($_POST['save2'])) {
+        $login = $_POST['login'];
+        $stmt = $pdo->query("SELECT login FROM users where login='$login'");
+        $row = $stmt->fetch();
+        if ($row['login'] == $login) {
+            throw new Exception('Логин занят!');
         }
-    } else {
-        echo "<script>alert(\"Логин занят!\");</script>";
+        if ($login == "") {
+            throw new Exception('Введите логин!');
+        }
+        if (strlen($login) >= 20) {
+            throw new Exception('Логин должен быть меньше 20 символов!');
+        }
+        if (strlen($login) <= 2) {
+            throw new Exception('Логин должен быть больше 2 символов!');
+        }
+        if (preg_match('|^[-A-Za-z0-9_]*$|', $login)) {
+            $changelogin = $pdo->prepare("UPDATE users SET login=(?) WHERE login='$herelogin'");
+            $changelogin->execute([$login]);
+            $changeloginstones = $pdo->prepare("UPDATE userstones SET login=(?) WHERE login='$herelogin'");
+            $changeloginstones->execute([$login]);
+            echo "<script>alert(\"Логин успешно изменён!\");</script>";
+            unset($_SESSION['login']);
+            $_SESSION['login'] = $login;
+            header("Location: /elfpage.php");
+        } else {
+            throw new Exception('На английском, пожалуйста!');
+        }
     }
+} catch (Exception $e) {
+    echo 'Ошибка ввода логина: ',  $e->getMessage();
 }
 
-if (isset($_POST['save3'])) {
-    $password = ($_POST['password']);
-    $passwordmd5 = md5($_POST['password']);
-    if ($password !== "") {
-        if (strlen($password) < 20) {
-            if (strlen($password) > 3) {
-                if (preg_match('|^[-A-Za-z0-9_]*$|', $password)) {
-                    $changepassword = $pdo->prepare("UPDATE users SET password=(?) WHERE login='$herelogin'");
-                    $changepassword->execute([$passwordmd5]);
-                    echo "<script>alert(\"Пароль успешно изменён!\");</script>";
-                    header("Location: /elfpage.php");
-                } else {
-                    echo "<script>alert(\"На английском, пожалуйста\");</script>";
-                }
-            } else {
-                echo "<script>alert(\"Пароль должен быть больше 3 символов!\");</script>";
-            }
-        } else {
-            echo "<script>alert(\"Пароль должен быть меньше 20 символов!\");</script>";
+try {
+    if (isset($_POST['save3'])) {
+        $password = ($_POST['password']);
+        $passwordsha1 = sha1($_POST['password']);
+        if ($password == "") {
+            throw new Exception('Введите пароль!');
         }
-    } else {
-        echo "<script>alert(\"Введите пароль!\");</script>";
+        if (strlen($password) >= 20) {
+            throw new Exception('Пароль должен быть меньше 20 символов!');
+        }
+        if (strlen($password) <= 3) {
+            throw new Exception('Пароль должен быть больше 3 символов!');
+        }
+        if (preg_match('|^[-A-Za-z0-9_]*$|', $password)) {
+            $changepassword = $pdo->prepare("UPDATE users SET password=(?) WHERE login='$herelogin'");
+            $changepassword->execute([$passwordsha1]);
+            echo "<script>alert(\"Пароль успешно изменён!\");</script>";
+            header("Location: /elfpage.php");
+        } else {
+            throw new Exception('На английском, пожалуйста!');
+        }
     }
+} catch (Exception $e) {
+    echo 'Ошибка ввода пароля: ',  $e->getMessage();
 }
 
 if (isset($_POST['saveStones'])) {
@@ -118,17 +120,19 @@ if (isset($_POST['saveStones'])) {
 }
 ?>
 <?php include "header.php"; ?>
-<link rel="stylesheet" type="text/css" href="csselfpage.css">
+<link rel="stylesheet" type="text/css" href="css/csselfpage.css">
 
-<div>
-    <div class="layer1">
-        <p class="x1">Привет, <?php echo "$herelogin" ?> !</p>
+<div class="jumbotron">
+    <div class="container">
+        <div class="layer1">
+            <p class="x1">Привет, <?php echo "$herelogin" ?> !</p>
+        </div>
     </div>
 </div>
 
-<div class="limiter block1">
-    <div class="wrap-login100 p-t-1 p-b-10">
-        <span class="login104-form-title p-b-1">
+<div class="limiter">
+    <div class="wrap-login100">
+        <span class="login104-form-title">
             Ваше имя:
         </span>
         <form class="login100-form" method="POST">
@@ -143,9 +147,9 @@ if (isset($_POST['saveStones'])) {
     </div>
 </div>
 
-<div class="limiter block2">
-    <div class="wrap-login100 p-t-1 p-b-10">
-        <span class="login104-form-title p-b-1">
+<div class="limiter">
+    <div class="wrap-login100">
+        <span class="login104-form-title">
             Ваш логин:
         </span>
         <form class="login100-form" method="POST">
@@ -160,9 +164,9 @@ if (isset($_POST['saveStones'])) {
     </div>
 </div>
 
-<div class="limiter block3">
-    <div class="wrap-login100 p-t-1 p-b-10">
-        <span class="login104-form-title p-b-1">
+<div class="limiter">
+    <div class="wrap-login100">
+        <span class="login104-form-title">
             Ваш пароль:
         </span>
         <form class="login100-form" method="POST">
@@ -176,93 +180,101 @@ if (isset($_POST['saveStones'])) {
         </form>
     </div>
 </div>
-<!-- див залазит за границы найти и уничтожить -->
-<div class="layer2">
-    <p class="x2">Драгоценности:</p><br>
-    <form class="back1" name="formstones" method="post">
-        <p class="amethyst"><input name="amethyst" id="amethyst" type="range" min="0" max="1" step="0.1" value="0" oninput="getValue()"></span>Аметист</p>
-        <p class="sapphire"><input name="sapphire" id="sapphire" type="range" min="0" max="1" step="0.1" value="0" oninput="getValue()">Сапфир</p>
-        <p class="emerald"><input name="emerald" id="emerald" type="range" min="0" max="1" step="0.1" value="0" oninput="getValue()">Изумруд</p>
-        <p class="ruby"><input name="ruby" id="ruby" type="range" min="0" max="1" step="0.1" value="0" oninput="getValue()">Рубин</p>
-        <p class="diamond"><input name="diamond" id="diamond" type="range" min="0" max="1" step="0.1" value="0" oninput="getValue()">Алмаз</p>
-        <p class="topaz"><input name="topaz" id="topaz" type="range" min="0" max="1" step="0.1" value="0" oninput="getValue()">Топаз</p>
-        <button class="login100-form-btn" type="submit" name="saveStones">
-            Выбрать камни
-        </button>
-    </form>
-    <div class="intStones">
-        <span class="intAmethyst" id="rangeAmethyst">0</span>
-        <span class="intSapphire" id="rangeSapphire">0</span>
-        <span class="intEmerald" id="rangeEmerald">0</span>
-        <span class="intRuby" id="rangeRuby">0</span>
-        <span class="intDiamond" id="rangeDiamond">0</span>
-        <span class="intTopaz" id="rangeTopaz">0</span>
+
+<div class="container">
+    <div class="limiter1">
+        <span class="login104-form-title">
+            Предпочтения:
+        </span>
+        <form class="back1" name="formstones" method="post">
+            <p class="amethyst"><input name="amethyst" id="amethyst" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()"></span>Аметист</p>
+            <p class="sapphire"><input name="sapphire" id="sapphire" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Сапфир</p>
+            <p class="emerald"><input name="emerald" id="emerald" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Изумруд</p>
+            <p class="ruby"><input name="ruby" id="ruby" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Рубин</p>
+            <p class="diamond"><input name="diamond" id="diamond" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Алмаз</p>
+            <p class="topaz"><input name="topaz" id="topaz" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Топаз</p>
+            <button class="login100-form-btn" type="submit" name="saveStones">
+                Выбрать камни
+            </button>
+        </form>
+    </div>
+    <div class="limiter2">
+        <div class="intStones">
+            <span class="intAmethyst" id="rangeAmethyst" value="0.16">0.16</span><br>
+            <span class="intSapphire" id="rangeSapphire" value="0.16">0.16</span><br>
+            <span class="intEmerald" id="rangeEmerald" value="0.16">0.16</span><br>
+            <span class="intRuby" id="rangeRuby" value="0.16">0.16</span><br>
+            <span class="intDiamond" id="rangeDiamond" value="0.16">0.16</span><br>
+            <span class="intTopaz" id="rangeTopaz" value="0.16">0.16</span><br>
+        </div>
+    </div>
+
+
+    <div class="limiter2">
+        <form class="back2" name="favoritestones">
+            <p class="amethyst1"><?php if ($hereAmethyst == NULL) {
+                                        echo "Пусто";
+                                    } else {
+                                        echo (Аметист . " " . $hereAmethyst);
+                                    } ?></p>
+            <p class="sapphire1"><?php if ($hereSapphire == NULL) {
+                                        echo "Пусто";
+                                    } else {
+                                        echo (Сапфир . " " . $hereSapphire);
+                                    } ?></p>
+            <p class="emerald1"><?php if ($hereEmerald == NULL) {
+                                    echo "Пусто";
+                                } else {
+                                    echo (Изумруд . " " . $hereEmerald);
+                                } ?></p>
+            <p class="ruby1"><?php if ($hereRuby == NULL) {
+                                    echo "Пусто";
+                                } else {
+                                    echo (Рубин . " " . $hereRuby);
+                                } ?></p>
+            <p class="diamond1"><?php if ($hereDiamond == NULL) {
+                                    echo "Пусто";
+                                } else {
+                                    echo (Алмаз . " " . $hereDiamond);
+                                } ?></p>
+            <p class="topaz1"><?php if ($hereTopaz == NULL) {
+                                    echo "Пусто";
+                                } else {
+                                    echo (Топаз . " " . $hereTopaz);
+                                } ?></p>
+        </form>
+    </div>
+
+
+    <div class="limiter2">
+    <span class="login104-form-title">
+            Полученные:
+        </span>
+        <form class="back1" name="getstones">
+            <p class="amethyst"><input type="checkbox" name="Аметист" value="Аметист">Аметист</p>
+            <p class="sapphire"><input type="checkbox" name="Сапфир" value="Сапфир">Сапфир</p>
+            <p class="emerald"><input type="checkbox" name="Изумруд" value="Изумруд">Изумруд</p>
+            <p class="ruby"><input type="checkbox" name="Рубин" value="Рубин">Рубин</p>
+            <p class="diamond"><input type="checkbox" name="Алмаз" value="Алмаз">Алмаз</p>
+            <p class="topaz"><input type="checkbox" name="Топаз" value="Топаз">Топаз</p>
+        </form>
+    </div>
+
+    <div class="limiter2">
+    <span class="login104-form-title">
+            Принять:
+        </span>
+        <form class="back1" name="givemestones">
+            <p class="amethyst"><input type="checkbox" name="Аметист" value="Аметист">Аметист</p>
+            <p class="sapphire"><input type="checkbox" name="Сапфир" value="Сапфир">Сапфир</p>
+            <p class="emerald"><input type="checkbox" name="Изумруд" value="Изумруд">Изумруд</p>
+            <p class="ruby"><input type="checkbox" name="Рубин" value="Рубин">Рубин</p>
+            <p class="diamond"><input type="checkbox" name="Алмаз" value="Алмаз">Алмаз</p>
+            <p class="topaz"><input type="checkbox" name="Топаз" value="Топаз">Топаз</p>
     </div>
 </div>
-
-<div class="layer3">
-    <p class="x3">Предпочтения:</p><br>
-    <form class="back2" name="favoritestones">
-        <p class="amethyst1"><?php if ($hereAmethyst == NULL) {
-                                    echo "Пусто";
-                                } else {
-                                    echo (Аметист . " " . $hereAmethyst);
-                                } ?></p>
-        <p class="sapphire1"><?php if ($hereSapphire == NULL) {
-                                    echo "Пусто";
-                                } else {
-                                    echo (Сапфир . " " . $hereSapphire);
-                                } ?></p>
-        <p class="emerald1"><?php if ($hereEmerald == NULL) {
-                                echo "Пусто";
-                            } else {
-                                echo (Изумруд . " " . $hereEmerald);
-                            } ?></p>
-        <p class="ruby1"><?php if ($hereRuby == NULL) {
-                                echo "Пусто";
-                            } else {
-                                echo (Рубин . " " . $hereRuby);
-                            } ?></p>
-        <p class="diamond1"><?php if ($hereDiamond == NULL) {
-                                echo "Пусто";
-                            } else {
-                                echo (Алмаз . " " . $hereDiamond);
-                            } ?></p>
-        <p class="topaz1"><?php if ($hereTopaz == NULL) {
-                                echo "Пусто";
-                            } else {
-                                echo (Топаз . " " . $hereTopaz);
-                            } ?></p>
-    </form>
-</div>
-
-<div class="layer4">
-    <p class="x2">Полученные:</p><br>
-    <form class="back1" name="getstones">
-        <p class="amethyst"><input type="checkbox" name="Аметист" value="Аметист">Аметист</p>
-        <p class="sapphire"><input type="checkbox" name="Сапфир" value="Сапфир">Сапфир</p>
-        <p class="emerald"><input type="checkbox" name="Изумруд" value="Изумруд">Изумруд</p>
-        <p class="ruby"><input type="checkbox" name="Рубин" value="Рубин">Рубин</p>
-        <p class="diamond"><input type="checkbox" name="Алмаз" value="Алмаз">Алмаз</p>
-        <p class="topaz"><input type="checkbox" name="Топаз" value="Топаз">Топаз</p>
-    </form>
-</div>
-
-<div class="layer5">
-    <p class="x2">Принять:</p><br>
-    <form class="back1" name="givemestones">
-        <p class="amethyst"><input type="checkbox" name="Аметист" value="Аметист">Аметист</p>
-        <p class="sapphire"><input type="checkbox" name="Сапфир" value="Сапфир">Сапфир</p>
-        <p class="emerald"><input type="checkbox" name="Изумруд" value="Изумруд">Изумруд</p>
-        <p class="ruby"><input type="checkbox" name="Рубин" value="Рубин">Рубин</p>
-        <p class="diamond"><input type="checkbox" name="Алмаз" value="Алмаз">Алмаз</p>
-        <p class="topaz"><input type="checkbox" name="Топаз" value="Топаз">Топаз</p>
-</div>
-
-
 <div id="footer">
     <p class="x2">Дата регистрации: <?php echo $heredatereg ?>
         Дата последней авторизации: <?php echo $heredateaut ?></p>
 </div>
-
 <?php include "footer.php"; ?>

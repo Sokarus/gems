@@ -1,48 +1,20 @@
 function plusStone(elementId) {
     var element = document.getElementById(elementId);
-    element.innerHTML = Number(element.innerHTML) + 1;
+    element.value = Number(element.value) + 1;
 };
 
 function minusStone(elementId) {
-    var asd = document.getElementById(elementId);
-
-    element.innerHTML = Number(element.innerHTML) - 1; 
-}
-
-function minusSapphire() {
-    var sapphire = document.getElementById('Sa');
-    if (Number(sapphire.innerHTML) > 0) {
-        sapphire.innerHTML = Number(sapphire.innerHTML) - 1;
+    var element = document.getElementById(elementId);
+    if (Number(element.value) > 0) {
+    element.value = Number(element.value) - 1; 
     }
-}
+};
 
-function minusEmerald() {
-    var emerald = document.getElementById('Em');
-    if (Number(emerald.innerHTML) > 0) {
-        emerald.innerHTML = Number(emerald.innerHTML) - 1;
-    }
+function range(elementIn, elementOut) {
+    var inner = document.getElementById(elementIn);
+    var outer = document.getElementById(elementOut);
+    outer.innerHTML = inner.value;
 }
-
-function minusRuby() {
-    var ruby = document.getElementById('Ru');
-    if (Number(ruby.innerHTML) > 0) {
-        ruby.innerHTML = Number(ruby.innerHTML) - 1;
-    }
-}
-
-function minusDiamond() {
-    var diamond = document.getElementById('Di');
-    if (Number(diamond.innerHTML) > 0) {
-        diamond.innerHTML = Number(diamond.innerHTML) - 1;
-    }
-}
-
-function minusTopaz() {
-    var topaz = document.getElementById('To');
-    if (Number(topaz.innerHTML) > 0) {
-        topaz.innerHTML = Number(topaz.innerHTML) - 1;
-    }
-} 
 
 function getValue() {
     var pAm = document.getElementById('rangeAmethyst');
@@ -67,29 +39,32 @@ function getValue() {
     pTo.innerHTML = To.value;
     if (Number(Am.value) + Number(Sa.value) + Number(Em.value) + Number(Ru.value) + Number(Di.value) + Number(To.value) > 1) {
         if (Number(Am.value) > 0) {
-            Am.value = Am.value - 0.1;
+            Am.value = Am.value - 0.16;
             pAm.innerHTML = Am.value;
         }
         if (Number(Sa.value) > 0) {
-            Sa.value = Sa.value - 0.1;
+            Sa.value = Sa.value - 0.16;
             pSa.innerHTML = Sa.value;
         }
         if (Number(Em.value) > 0) {
-            Em.value = Em.value - 0.1;
+            Em.value = Em.value - 0.16;
             pEm.innerHTML = Em.value;
         }
         if (Number(Ru.value) > 0) {
-            Ru.value = Ru.value - 0.1;
+            Ru.value = Ru.value - 0.16;
             pRu.innerHTML = Ru.value;
         }
         if (Number(Di.value) > 0) {
-            Di.value = Di.value - 0.1;
+            Di.value = Di.value - 0.16;
             pDi.innerHTML = Di.value;
         }
         if (Number(To.value) > 0) {
-            To.value = To.value - 0.1;
+            To.value = To.value - 0.16;
             pTo.innerHTML = To.value;
             //в сумме всегда 1 , при убавлении везде расределялось поровну , что бы при открытии по дефолту значения были одинаковы.
         }
+    }
+    if (Number(Am.value) + Number(Sa.value) + Number(Em.value) + Number(Ru.value) + Number(Di.value) + Number(To.value) !== 1){
+
     }
 }

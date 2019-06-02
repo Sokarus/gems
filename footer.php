@@ -7,6 +7,6 @@
 <script src="form/vendor/daterangepicker/daterangepicker.js"></script>
 <script src="form/vendor/countdowntime/countdowntime.js"></script>
 <script src="form/js/main.js"></script>
-<script src="myjs.js"></script>
+<script src="js/myjs.js"></script>
 </body>
 </html>

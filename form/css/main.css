@@ -75,7 +75,7 @@ ul, li {
 /*---------------------------------------------*/
 input {
 	outline: none;
-	border: none;
+  border: none;
 }
 
 textarea {
@@ -97,15 +97,15 @@ textarea:focus:-moz-placeholder { color:transparent; }
 textarea:focus::-moz-placeholder { color:transparent; }
 textarea:focus:-ms-input-placeholder { color:transparent; }
 
-input::-webkit-input-placeholder { color: #555555;}
-input:-moz-placeholder { color: #555555;}
-input::-moz-placeholder { color: #555555;}
-input:-ms-input-placeholder { color: #555555;}
+input::-webkit-input-placeholder { color: #ffffff;}
+input:-moz-placeholder { color: #ffffff;}
+input::-moz-placeholder { color: #ffffff;}
+input:-ms-input-placeholder { color: #ffffff;}
 
-textarea::-webkit-input-placeholder { color: #555555;}
-textarea:-moz-placeholder { color: #555555;}
-textarea::-moz-placeholder { color: #555555;}
-textarea:-ms-input-placeholder { color: #555555;}
+textarea::-webkit-input-placeholder { color: #ffffff;}
+textarea:-moz-placeholder { color: #ffffff;}
+textarea::-moz-placeholder { color: #ffffff;}
+textarea:-ms-input-placeholder { color: #ffffff;}
 
 label {
   margin: 0;
@@ -148,7 +148,7 @@ iframe {
 
 
 .container-login101 { 
-  min-height: 624px;
+  min-height: 300px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -162,10 +162,10 @@ iframe {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  position: absolute;
-  top: 0%;
-  left: 50%;
+  position: relative;
   z-index: 1;  
+  width: 20%;
+  margin-left: 500px;
 }
 
 .container-login100 {
@@ -278,7 +278,7 @@ iframe {
 
   display: block;
 
-  color: #333333;
+  color: #ffffff;
     margin: 15px 0;
     font-size: 8vw;
     font-weight: lighter;
@@ -345,6 +345,14 @@ iframe {
   display: block;
 }
 
+.login106-form-title {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: block;
+}
 
 /*------------------------------------------------------------------
 [ Input ]*/
@@ -352,7 +360,7 @@ iframe {
 .wrap-input100 {
   width: 100%;
   position: relative;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #ffffff;
   padding: 29px 0;
 }
 
@@ -367,7 +375,7 @@ iframe {
 .input100 {
   font-family: Ubuntu-Regular;
   font-size: 20px;
-  color: #555555;
+  color: #ffffff;
   line-height: 1.2;
 
   display: block;

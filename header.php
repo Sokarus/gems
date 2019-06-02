@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="form/vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="form/css/util.css">
 	<link rel="stylesheet" type="text/css" href="form/css/main.css">
-	<link rel="stylesheet" type="text/css" href="mycss.css">
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 </head>
 

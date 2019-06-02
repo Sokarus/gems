@@ -12,103 +12,106 @@ $herelogin = $row[1];
 $heredatereg = $row[2];
 $heredateaut = $row[3];
 
-if (isset($_POST['save1'])) {
-    $name = $_POST['name'];
-    if ($name !== "") {
-        if (strlen($name) < 30) {
-            if (strlen($name) > 1) {
-                if (preg_match('|^[-A-Za-z0-9_]*$|', $name)) {
-                    $changename = $pdo->query("UPDATE users SET name='$name' WHERE login='$herelogin'");
-                    echo "<script>alert(\"Имя успешно изменено!\");</script>";
-                    header("Location: /gnomepage.php");
-                } else {
-                    echo "<script>alert(\"На английском, пожалуйста\");</script>";
-                }
-            } else {
-                echo "<script>alert(\"Имя должно быть больше 1 символа!\");</script>";
-            }
-        } else {
-            echo "<script>alert(\"Имя должно быть меньше 30 символов!\");</script>";
+try {
+    if (isset($_POST['save1'])) {
+        $name = $_POST['name'];
+        if ($name == "") {
+            throw new Exception('Введите имя!');
         }
-    } else {
-        echo "<script>alert(\"Введите имя!\");</script>";
+        if (strlen($name) >= 30) {
+            throw new Exception('Имя должно быть меньше 30 символов!');
+        }
+        if (strlen($name) <= 1) {
+            throw new Exception('Имя должно быть больше 1 символа!');
+        }
+        if (preg_match('|^[-A-Za-z0-9_]*$|', $name)) {
+            $changename = $pdo->prepare("UPDATE users SET name='$name' WHERE login=(?)");
+            $changename->execute([$herelogin]);
+            echo "<script>alert(\"Имя успешно изменено!\");</script>";
+            header("Location: /gnomepage.php");
+        } else {
+            throw new Exception('На английском, пожалуйста!');
+        }
     }
+} catch (Exception $e) {
+    echo 'Ошибка ввода имени: ',  $e->getMessage();
 }
 
-if (isset($_POST['save2'])) {
-    $login = $_POST['login'];
-    $stmt = $pdo->query("SELECT login FROM users where login='$login'");
-    $row = $stmt->fetch();
-    if ($row['login'] !== $login) {
-        if ($login !== "") {
-            if (strlen($login) < 20) {
-                if (strlen($login) > 2) {
-                    if (preg_match('|^[-A-Za-z0-9_]*$|', $login)) {
-                        $changelogin = $pdo->prepare("UPDATE users SET login=(?) WHERE login='$herelogin'");
-                        $changelogin->execute([$login]);
-                        $changeloginstones = $pdo->prepare("UPDATE userstones SET login=(?) WHERE login='$herelogin'");
-                        $changeloginstones->execute([$login]);
-                        echo "<script>alert(\"Логин успешно изменён!\");</script>";
-                        unset($_SESSION['login']);
-                        $_SESSION['login'] = $login;
-                        header("Location: /gnomepage.php");
-                    } else {
-                        echo "<script>alert(\"На английском, пожалуйста\");</script>";
-                    }
-                } else {
-                    echo "<script>alert(\"Логин должен быть больше 2 символов!\");</script>";
-                }
-            } else {
-                echo "<script>alert(\"Логин должен быть меньше 20 символов!\");</script>";
-            }
-        } else {
-            echo "<script>alert(\"Введите логин!\");</script>";
+try {
+    if (isset($_POST['save2'])) {
+        $login = $_POST['login'];
+        $stmt = $pdo->query("SELECT login FROM users where login='$login'");
+        $row = $stmt->fetch();
+        if ($row['login'] == $login) {
+            throw new Exception('Логин занят!');
         }
-    } else {
-        echo "<script>alert(\"Логин занят!\");</script>";
+        if ($login == "") {
+            throw new Exception('Введите логин!');
+        }
+        if (strlen($login) >= 20) {
+            throw new Exception('Логин должен быть меньше 20 символов!');
+        }
+        if (strlen($login) <= 2) {
+            throw new Exception('Логин должен быть больше 2 символов!');
+        }
+        if (preg_match('|^[-A-Za-z0-9_]*$|', $login)) {
+            $changelogin = $pdo->prepare("UPDATE users SET login=(?) WHERE login='$herelogin'");
+            $changelogin->execute([$login]);
+            $changeloginstones = $pdo->prepare("UPDATE userstones SET login=(?) WHERE login='$herelogin'");
+            $changeloginstones->execute([$login]);
+            echo "<script>alert(\"Логин успешно изменён!\");</script>";
+            unset($_SESSION['login']);
+            $_SESSION['login'] = $login;
+            header("Location: /gnomepage.php");
+        } else {
+            throw new Exception('На английском, пожалуйста!');
+        }
     }
+} catch (Exception $e) {
+    echo 'Ошибка ввода логина: ',  $e->getMessage();
 }
 
-if (isset($_POST['save3'])) {
-    $password = ($_POST['password']);
-    $passwordmd5 = md5($_POST['password']);
-    if ($password !== "") {
-        if (strlen($password) < 20) {
-            if (strlen($password) > 3) {
-                if (preg_match('|^[-A-Za-z0-9_]*$|', $password)) {
-                    $changepassword = $pdo->prepare("UPDATE users SET password=(?) WHERE login='$herelogin'");
-                    $changepassword->execute([$passwordmd5]);
-                    echo "<script>alert(\"Пароль успешно изменён!\");</script>";
-                    header("Location: /gnomepage.php");
-                } else {
-                    echo "<script>alert(\"На английском, пожалуйста\");</script>";
-                }
-            } else {
-                echo "<script>alert(\"Пароль должен быть больше 3 символов!\");</script>";
-            }
-        } else {
-            echo "<script>alert(\"Пароль должен быть меньше 20 символов!\");</script>";
+try {
+    if (isset($_POST['save3'])) {
+        $password = ($_POST['password']);
+        $passwordsha1 = sha1($_POST['password']);
+        if ($password == "") {
+            throw new Exception('Введите пароль!');
         }
-    } else {
-        echo "<script>alert(\"Введите пароль!\");</script>";
+        if (strlen($password) >= 20) {
+            throw new Exception('Пароль должен быть меньше 20 символов!');
+        }
+        if (strlen($password) <= 3) {
+            throw new Exception('Пароль должен быть больше 3 символов!');
+        }
+        if (preg_match('|^[-A-Za-z0-9_]*$|', $password)) {
+            $changepassword = $pdo->prepare("UPDATE users SET password=(?) WHERE login='$herelogin'");
+            $changepassword->execute([$passwordsha1]);
+            echo "<script>alert(\"Пароль успешно изменён!\");</script>";
+            header("Location: /gnomepage.php");
+        } else {
+            throw new Exception('На английском, пожалуйста!');
+        }
     }
+} catch (Exception $e) {
+    echo 'Ошибка ввода пароля: ',  $e->getMessage();
 }
 
 ?>
 <?php include "header.php"; ?>
-<link rel="stylesheet" type="text/css" href="cssgnomepage.css">
+<link rel="stylesheet" type="text/css" href="css/cssgnomepage.css">
 
-<div>
-    <div class="layer1">
-        <p class="x1">Привет, <?php echo "$herelogin" ?> !</p>
+<div class="jumbotron">
+    <div class="container">
+        <div class="layer1">
+            <p class="x1">Привет, <?php echo "$herelogin" ?> !</p>
+        </div>
     </div>
 </div>
 
-
-
-<div class="limiter block1">
-    <div class="wrap-login100 p-t-1 p-b-10">
-        <span class="login104-form-title p-b-1">
+<div class="limiter">
+    <div class="wrap-login100">
+        <span class="login104-form-title">
             Ваше имя:
         </span>
         <form class="login100-form" method="POST">
@@ -124,9 +127,9 @@ if (isset($_POST['save3'])) {
 </div>
 
 
-<div class="limiter1 block2">
-    <div class="wrap-login100 p-t-1 p-b-10">
-        <span class="login104-form-title p-b-1">
+<div class="limiter">
+    <div class="wrap-login100">
+        <span class="login104-form-title">
             Ваш логин:
         </span>
         <form class="login100-form" method="POST">
@@ -141,9 +144,9 @@ if (isset($_POST['save3'])) {
     </div>
 </div>
 
-<div class="limiter block3">
-    <div class="wrap-login100 p-t-1 p-b-10">
-        <span class="login104-form-title p-b-1">
+<div class="limiter">
+    <div class="wrap-login100">
+        <span class="login104-form-title">
             Ваш пароль:
         </span>
         <form class="login100-form" method="POST">
@@ -158,20 +161,25 @@ if (isset($_POST['save3'])) {
     </div>
 </div>
 
-<div class="layer6">
-    <p class="x4">Драгоценности:</p><br>
-    <form class="back1" name="formstones" method="post">
-        <p class="amethyst2">Аметист</p>
-        <p class="sapphire2">Сапфир</p>
-        <p class="emerald2">Изумруд</p>
-        <p class="ruby2">Рубин</p>
-        <p class="diamond2">Алмаз</p>
-        <p class="topaz2">Топаз</p>
-    </form>
+<div class="container">
+    <div class="limiter1">
+        <span class="login104-form-title">
+            Предпочтения:
+        </span>
+        <form class="back1" name="formstones" method="post">
+            <p class="amethyst2">Аметист</p>
+            <p class="sapphire2">Сапфир</p>
+            <p class="emerald2">Изумруд</p>
+            <p class="ruby2">Рубин</p>
+            <p class="diamond2">Алмаз</p>
+            <p class="topaz2">Топаз</p>
+        </form>
+    </div>
+
+    <div class="limiter2">
+        <a href="jewelry.php" class="button28">Добавить драгоценности</a>
+    </div>
 </div>
-
-<a href="jewelry.php" class="button28">Добавить драгоценности</a>
-
 <div id="footer">
     <p class="x2">Дата регистрации: <?php echo $heredatereg ?>
         Дата последней авторизации: <?php echo $heredateaut ?></p>

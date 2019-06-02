@@ -1,7 +1,8 @@
 <?php
-function loginCheck(){
-    if (!$_SESSION['login']) { 
+function loginCheck()
+{
+    if (!$_SESSION['login']) {
         header("Location: /autorization.php");
-        die ("Вы не залогинены!");
+        die("Вы не залогинены!");
     }
 }

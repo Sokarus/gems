@@ -1,45 +1,21 @@
-div.limiter1 {
-    position: absolute;
-    left: 17%;
-    top: 30%;
-}
-
 span.login100-form-title {
     font-size: 100%;
 }
 
 div.wrap-login100 {
-    width: 200px;
-}
-
-div.block1 {
-    position: relative;
-    left: 2%;
-    top: 3%;
-}
-
-div.block2 {
-    position: absolute;
-    left: 20%;
-    top: 48px;
-}
-
-div.block3 {
-    position: relative;
-    left: 11%;
-    top: 3%;
+    width: 191px;
 }
 
 p.x1 {
     font-size: 200%;
-    color: white;
+    color: rgb(0, 0, 0);
+    padding: 5px;
 }
 
 p.x2 {
     font-size: 115%;
     color: white;
-    position: relative;
-    left: 23%;
+    text-align: center;
 }
 
 p.x3 {
@@ -59,55 +35,6 @@ div.container-login100 {
     position: fixed;
 }
 
-.layer1 {
-    position: relative;
-    left: 11%;
-}
-
-.layer2 {
-    position: absolute;
-    right: 43%;
-    top: 7%;
-}
-
-.layer3 {
-    position: absolute;
-    right: 30%;
-    top: 7%;
-}
-
-.layer4 {
-    position: absolute;
-    right: 20%;
-    top: 7%;
-}
-
-.layer5 {
-    position: absolute;
-    right: 10%;
-    top: 7%;
-}
-
-.layer6 {
-    position: absolute;
-    right: 50%;
-    top: 20%;
-}
-
-.layer7 {
-    position: relative;
-    width: 15%;
-    left: 11%;
-    top: 7%;
-}
-
-.layer8 {
-    position: absolute;
-    width: 3%;
-    left: 24%;
-    top: 13%;
-}
-
 #footer {
     position: fixed;
     /* Фиксированное положение */
@@ -125,9 +52,6 @@ div.container-login100 {
 }
 
 a.button28 {
-    position: absolute;
-    top: 49%;
-    left: 495px;
     display: inline-block;
     font-size: 90%;
     font-weight: 700;
@@ -150,7 +74,6 @@ a.button29 {
     position: relative;
     display: inline-block;
     font-size: 90%;
-    font-weight: 700;
     color: rgb(209, 209, 217);
     text-decoration: none;
     text-shadow: 0 -1px 2px rgba(0, 0, 0, .2);
@@ -204,7 +127,15 @@ a.button26 {
     transition: .2s ease-in-out;
 }
 
-::selection{
+div.jumbotron {
+    width: 100%;
+    padding: 0%;
+    text-align: center;
+    background: linear-gradient(to top left, powderblue, pink);
+    margin-bottom: 0%;
+}
+
+::selection {
     background: transparent;
 }
 
@@ -213,20 +144,16 @@ a.button26:hover:not(:active) {
 }
 
 form.back1 {
-    background-color: gray;
+    background-color: rgba(128, 128, 128, 0.575);
     border-radius: 15px;
     padding: 5px;
+    width: 100%;
+    display: inline-block;
 }
 
 form.back2 {
     background-color: gray;
     border-radius: 15px;
-    padding: 5px;
-    position: absolute;
-    top: 34px;
-    right: 30%;
-    width: 100px;
-    height: 270px;
     background: rgba(0, 0, 0, 0.596);
     /* Цвет фона */
     border: 3px solid #fff;
@@ -240,8 +167,27 @@ form.back2 {
 
 form.back3 {
     background-color: rgba(77, 72, 72, 0.623);
-    border-radius: 15px;
-    padding: 5px;
+    border-radius: 20px;
+    width: 21%;
+    padding: 10px;
+}
+
+form.back4 {
+    background-color: rgba(232, 245, 60, 0.623);
+    border-radius: 20px;
+    width: 13%;
+    padding: 10px;
+    text-align: center;
+}
+
+div.jewelry {
+    padding-top: 20px;
+    padding-left: 120px;
+}
+
+div.jewelryHi {
+    padding-top: 30px;
+    padding-left: 100px;
 }
 
 p.amethyst {
@@ -269,51 +215,33 @@ p.topaz {
 }
 
 p.amethyst1 {
-    font-size: 115%;
+    font-size: 150%;
     color: violet;
-    position: absolute;
-    left: 0%;
-    top: 6%;
 }
 
 p.sapphire1 {
-    font-size: 115%;
+    font-size: 150%;
     color: blue;
-    position: absolute;
-    left: 0%;
-    top: 22%;
 }
 
 p.emerald1 {
-    font-size: 115%;
+    font-size: 150%;
     color: green;
-    position: absolute;
-    left: 0%;
-    top: 39%;
 }
 
 p.ruby1 {
-    font-size: 115%;
+    font-size: 150%;
     color: red;
-    position: absolute;
-    left: 0%;
-    top: 56%;
 }
 
 p.diamond1 {
-    font-size: 115%;
+    font-size: 150%;
     color: white;
-    position: absolute;
-    left: 0%;
-    top: 72%;
 }
 
 p.topaz1 {
-    font-size: 115%;
+    font-size: 150%;
     color: yellow;
-    position: absolute;
-    left: 0%;
-    top: 89%;
 }
 
 p.amethyst2 {
@@ -386,68 +314,91 @@ p.diamond3 {
     top: 161px;
 }
 
-p.topaz3 {
+input.amethyst4 {
+    font-size: 130%;
+    color: violet;
+    width: 20%;
+    background-color: #00000000;
+    text-align: center;
+    padding-left: 15px;
+}
+
+input.sapphire4 {
+    font-size: 130%;
+    color: blue;
+    width: 20%;
+    background-color: #00000000;
+    text-align: center;
+    padding-left: 15px;
+}
+
+input.emerald4 {
+    font-size: 130%;
+    color: green;
+    width: 20%;
+    background-color: #00000000;
+    text-align: center;
+    padding-left: 15px;
+}
+
+input.ruby4 {
+    font-size: 130%;
+    color: red;
+    width: 20%;
+    background-color: #00000000;
+    text-align: center;
+    padding-left: 15px;
+}
+
+input.diamond4 {
+    font-size: 130%;
+    color: white;
+    width: 20%;
+    background-color: #00000000;
+    text-align: center;
+    padding-left: 15px;
+}
+
+input.topaz4 {
     font-size: 130%;
     color: yellow;
-    position: absolute;
-    left: 90%;
-    top: 200px;
+    width: 20%;
+    background-color: #00000000;
+    text-align: center;
+    padding-left: 15px;
 }
 
 span.intAmethyst {
-    font-size: 115%;
+    font-size: 150%;
     color: violet;
-    position: absolute;
-    left: 0%;
-    top: 6%;
 }
 
 span.intSapphire {
-    font-size: 115%;
+    font-size: 150%;
     color: blue;
-    position: absolute;
-    left: 0%;
-    top: 22%;
 }
 
 span.intEmerald {
-    font-size: 115%;
+    font-size: 150%;
     color: green;
-    position: absolute;
-    left: 0%;
-    top: 39%;
 }
 
 span.intRuby {
-    font-size: 115%;
+    font-size: 150%;
     color: red;
-    position: absolute;
-    left: 0%;
-    top: 56%;
 }
 
 span.intDiamond {
-    font-size: 115%;
+    font-size: 150%;
     color: white;
-    position: absolute;
-    left: 0%;
-    top: 72%;
 }
 
 span.intTopaz {
-    font-size: 115%;
+    font-size: 150%;
     color: yellow;
-    position: absolute;
-    left: 0%;
-    top: 89%;
 }
 
 div.intStones {
-    position: absolute;
-    top: 34px;
-    left: 100%;
-    width: 30px;
-    height: 270px;
     /* Размеры */
     background: rgba(0, 0, 0, 0.596);
     /* Цвет фона */
@@ -458,6 +409,9 @@ div.intStones {
     display: inline-block;
     border: 2px solid transparent;
     /* Невидимая рамка */
+    text-align: center;
+    display: inline-block;
+    width: 50px;
 }
 
 div.intStones:hover {
@@ -468,7 +422,7 @@ div.intStones:hover {
 input[type=range] {
     -webkit-appearance: none;
     width: 50%;
-    margin: 20px;
+    margin: 10px;
 }
 
 input[type=range]:focus {
@@ -477,7 +431,7 @@ input[type=range]:focus {
 
 input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 4.4px;
+    height: 3.4px;
     cursor: pointer;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
     background: #3071a9;
@@ -488,13 +442,13 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
     border: 1px solid #000000;
-    height: 36px;
+    height: 16px;
     width: 16px;
-    border-radius: 37px;
+    border-radius: 30px;
     background: #ffffff;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -14px;
+    margin-top: -7px;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
@@ -561,4 +515,7 @@ input[type=range]:focus::-ms-fill-lower {
 
 input[type=range]:focus::-ms-fill-upper {
     background: #367ebd;
+}
+body {
+    color: white;
 }
