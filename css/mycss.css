@@ -6,25 +6,6 @@ div.wrap-login100 {
     width: 191px;
 }
 
-p.x1 {
-    font-size: 200%;
-    color: rgb(0, 0, 0);
-    padding: 5px;
-}
-
-p.x2 {
-    font-size: 115%;
-    color: white;
-    text-align: center;
-}
-
-p.x3 {
-    font-size: 100%;
-    color: white;
-    position: relative;
-    right: 30px;
-}
-
 p.x4 {
     font-size: 100%;
     color: rgb(0, 0, 0);
@@ -41,7 +22,7 @@ div.container-login100 {
     left: 0;
     bottom: 0;
     /* Левый нижний угол */
-    padding: 10px;
+    padding: 3px;
     /* Поля вокруг текста */
     background: #39b54a;
     /* Цвет фона */
@@ -49,6 +30,7 @@ div.container-login100 {
     /* Цвет текста */
     width: 100%;
     /* Ширина слоя */
+    height: 5%;
 }
 
 a.button28 {
@@ -127,49 +109,12 @@ a.button26 {
     transition: .2s ease-in-out;
 }
 
-div.jumbotron {
-    width: 100%;
-    padding: 0%;
-    text-align: center;
-    background: linear-gradient(to top left, powderblue, pink);
-    margin-bottom: 0%;
-}
-
 ::selection {
     background: transparent;
 }
 
 a.button26:hover:not(:active) {
     background: linear-gradient(rgb(126, 126, 134), rgb(70, 71, 76)) rgb(126, 126, 134);
-}
-
-form.back1 {
-    background-color: rgba(128, 128, 128, 0.575);
-    border-radius: 15px;
-    padding: 5px;
-    width: 100%;
-    display: inline-block;
-}
-
-form.back2 {
-    background-color: gray;
-    border-radius: 15px;
-    background: rgba(0, 0, 0, 0.596);
-    /* Цвет фона */
-    border: 3px solid #fff;
-    /* Белая рамка */
-    border-radius: 10px;
-    /* Радиус скругления */
-    display: inline-block;
-    border: 2px solid transparent;
-    /* Невидимая рамка */
-}
-
-form.back3 {
-    background-color: rgba(77, 72, 72, 0.623);
-    border-radius: 20px;
-    width: 21%;
-    padding: 10px;
 }
 
 form.back4 {
@@ -192,86 +137,104 @@ div.jewelryHi {
 
 p.amethyst {
     color: violet;
+    margin: 2%;
 }
 
 p.sapphire {
     color: blue;
+    margin: 2%;
 }
 
 p.emerald {
     color: green;
+    margin: 2%;
 }
 
 p.ruby {
     color: red;
+    margin: 2%;
 }
 
 p.diamond {
     color: white;
+    margin: 2%;
 }
 
 p.topaz {
     color: yellow;
+    margin: 2%;
 }
 
 p.amethyst1 {
-    font-size: 150%;
+    font-size: 130%;
     color: violet;
+    margin: 2%;
 }
 
 p.sapphire1 {
-    font-size: 150%;
+    font-size: 130%;
     color: blue;
+    margin: 2%;
 }
 
 p.emerald1 {
-    font-size: 150%;
+    font-size: 130%;
     color: green;
+    margin: 2%;
 }
 
 p.ruby1 {
-    font-size: 150%;
+    font-size: 130%;
     color: red;
+    margin: 2%;
 }
 
 p.diamond1 {
-    font-size: 150%;
+    font-size: 130%;
     color: white;
+    margin: 2%;
 }
 
 p.topaz1 {
-    font-size: 150%;
+    font-size: 130%;
     color: yellow;
+    margin: 2%;
 }
 
 p.amethyst2 {
     font-size: 115%;
     color: violet;
+    margin: 0%;
 }
 
 p.sapphire2 {
     font-size: 115%;
     color: blue;
+    margin: 0%;
 }
 
 p.emerald2 {
     font-size: 115%;
     color: green;
+    margin: 0%;
 }
 
 p.ruby2 {
     font-size: 115%;
     color: red;
+    margin: 0%;
 }
 
 p.diamond2 {
     font-size: 115%;
     color: white;
+    margin: 0%;
 }
 
 p.topaz2 {
     font-size: 115%;
     color: yellow;
+    margin: 0%;
 }
 
 p.amethyst3 {
@@ -422,7 +385,8 @@ div.intStones:hover {
 input[type=range] {
     -webkit-appearance: none;
     width: 50%;
-    margin: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
 }
 
 input[type=range]:focus {

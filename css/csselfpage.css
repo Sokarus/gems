@@ -6,7 +6,7 @@ body {
 
 div.limiter {
     margin: 0%;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-left: 20px;
     display: inline-block;
 }
@@ -22,7 +22,79 @@ div.limiter2 {
     margin: 0% 0px;
     display: inline-block;
 }
+div.limiter3 {
+    margin: 0% 0px;
+    display: inline-block;
+    padding-left: 27px;
+}
 
 div.container {
     max-width: 100%;
+}
+
+div.container1 {
+    max-width: 100%;
+    display: inline-block;
+}
+
+
+p.x1 {
+    font-size: 150%;
+    color: rgb(0, 0, 0);
+    padding: 1px;
+    display: inline-block;
+    text-align: left;
+}
+
+p.x2 {
+    font-size: 150%;
+    color: rgb(0, 0, 0);
+    padding: 1px;
+    display: inline-block;
+}
+
+p.x3 {
+    font-size: 115%;
+    color: white;
+    text-align: center;
+}
+
+div.jumbotron {
+    width: 100%;
+    height: 7%;
+    padding: 0%;
+    padding-top: 3px;
+    background: linear-gradient(to top left, powderblue, pink);
+    margin-bottom: 0%;
+}
+
+form.back1 {
+    background-color: rgba(128, 128, 128, 0.575);
+    border-radius: 15px;
+    padding: 5px;
+    width: 100%;
+    display: inline-block;
+}
+
+form.back2 {
+    background-color: gray;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.596);
+    /* Цвет фона */
+    border: 3px solid #fff;
+    /* Белая рамка */
+    border-radius: 10px;
+    /* Радиус скругления */
+    display: inline-block;
+    border: 2px solid transparent;
+    /* Невидимая рамка */
+    width: 120%;
+    text-align: center;
+}
+
+form.back3 {
+    background-color: rgba(77, 72, 72, 0.623);
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px;
 }

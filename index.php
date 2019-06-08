@@ -5,7 +5,7 @@
 try {
   if (isset($_POST['save'])) {
     $login = $_POST['login'];
-    $password = sha1($_POST['password']); // sha алгоритм паролей
+    $password = sha1($_POST['password']);
     $user = [$login, $password];
     $stmt = $pdo->prepare("SELECT login , password FROM users where login=(?)");
     $stmt->execute([$login]);
@@ -43,8 +43,8 @@ try {
 
 <div class="jumbotron">
   <div class="container">
-    <p>Привет, путник!</p>
-    <p>Регистрируйся скорее!</p><br>
+    <p>Привет, путник!
+    Регистрируйся скорее!</p><br>
   </div>
 </div>
 </div>

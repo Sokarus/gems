@@ -18,8 +18,8 @@ try {
     }
     if ($answer) {
       $date = date("Y-m-d H:i:s");
-      $stmt = $pdo->prepare('INSERT INTO users (name, login, password, race, datereg) VALUES (?, ?, ?, ?, ?)');
-      $stmt->execute([$name, $login, $password, $answer, $date]);
+      $stmt = $pdo->prepare('INSERT INTO users (name, login, password, race, datereg, status) VALUES (?, ?, ?, ?, ?, ?)');
+      $stmt->execute([$name, $login, $password, $answer, $date, 'Активен']);
     } else {
       throw new Exception('Пользователь не выбрал рассу!');
     }

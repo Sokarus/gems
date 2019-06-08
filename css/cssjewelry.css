@@ -2,3 +2,27 @@ body {
     background: url(pics/jewelry.png);
     background-size: 100%;
 }
+div.jumbotron {
+    width: 100%;
+    height: 7%;
+    padding: 0%;
+    text-align: center;
+    background: linear-gradient(to top left, powderblue, pink);
+    margin-bottom: 0%;
+}
+div.container {
+    max-width: 100%;
+}
+
+p.x1 {
+    font-size: 150%;
+    color: rgb(0, 0, 0);
+    padding: 1px;
+}
+
+form.back3 {
+    background-color: rgba(77, 72, 72, 0.623);
+    border-radius: 20px;
+    width: 20%;
+    padding: 10px;
+}

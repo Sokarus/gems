@@ -103,10 +103,8 @@ try {
 
 <div class="jumbotron">
     <div class="container">
-        <div class="layer1">
-            <p class="x1">Привет, <?php echo "$herelogin" ?> !</p>
-        </div>
-    </div>
+            <p class="x1">Страница <?php echo "$herelogin" ?>-а !</p>
+            <p class="x2">Привет, <?php echo "$herelogin" ?> !</p>
 </div>
 
 <div class="limiter">
@@ -181,7 +179,7 @@ try {
     </div>
 </div>
 <div id="footer">
-    <p class="x2">Дата регистрации: <?php echo $heredatereg ?>
+    <p class="x3">Дата регистрации: <?php echo $heredatereg ?>
         Дата последней авторизации: <?php echo $heredateaut ?></p>
 </div>
 

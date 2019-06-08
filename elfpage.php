@@ -16,12 +16,12 @@ $heredateaut = $row[3];
 $stmtstones = $pdo->prepare("SELECT amethyst , diamond , emerald , ruby , sapphire , topaz FROM userstones where login=(?)");
 $stmtstones->execute([$tohello]);
 $rowstones = $stmtstones->fetch();
-$hereAmethyst = $rowstones[0];
-$hereDiamond = $rowstones[1];
-$hereEmerald = $rowstones[2];
-$hereRuby = $rowstones[3];
-$hereSapphire = $rowstones[4];
-$hereTopaz = $rowstones[5];
+$hereAmethyst = round($rowstones[0], 2);
+$hereDiamond = round($rowstones[1], 2);
+$hereEmerald = round($rowstones[2], 2);
+$hereRuby = round($rowstones[3], 2);
+$hereSapphire = round($rowstones[4], 2);
+$hereTopaz = round($rowstones[5], 2);
 
 try {
     if (isset($_POST['save1'])) {
@@ -125,10 +125,8 @@ if (isset($_POST['saveStones'])) {
 
 <div class="jumbotron">
     <div class="container">
-        <div class="layer1">
-            <p class="x1">Привет, <?php echo "$herelogin" ?> !</p>
-        </div>
-    </div>
+            <p class="x1">Страница <?php echo "$herelogin" ?>-а !</p>
+            <p class="x2">Привет, <?php echo "$herelogin" ?> !</p>
 </div>
 
 <div class="limiter">
@@ -188,12 +186,12 @@ if (isset($_POST['saveStones'])) {
             Предпочтения:
         </span>
         <form class="back1" name="formstones" method="post">
-            <p class="amethyst"><input name="amethyst" id="amethyst" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()"></span>Аметист</p>
-            <p class="sapphire"><input name="sapphire" id="sapphire" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Сапфир</p>
-            <p class="emerald"><input name="emerald" id="emerald" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Изумруд</p>
-            <p class="ruby"><input name="ruby" id="ruby" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Рубин</p>
-            <p class="diamond"><input name="diamond" id="diamond" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Алмаз</p>
-            <p class="topaz"><input name="topaz" id="topaz" type="range" min="0" max="1" step="0.16" value="0.16" oninput="getValue()">Топаз</p>
+            <p class="amethyst"><input class="stone" name="amethyst" id="amethyst" type="range" min="0" max="1" step="0.001" value="0.16" oninput="getValue('rangeAmethyst', 'amethyst')"></span>Аметист</p>
+            <p class="sapphire"><input class="stone" name="sapphire" id="sapphire" type="range" min="0" max="1" step="0.001" value="0.16" oninput="getValue('rangeSapphire', 'sapphire')">Сапфир</p>
+            <p class="emerald"><input class="stone" name="emerald" id="emerald" type="range" min="0" max="1" step="0.001" value="0.16" oninput="getValue('rangeEmerald', 'emerald')">Изумруд</p>
+            <p class="ruby"><input class="stone" name="ruby" id="ruby" type="range" min="0" max="1" step="0.001" value="0.16" oninput="getValue('rangeRuby', 'ruby')">Рубин</p>
+            <p class="diamond"><input class="stone" name="diamond" id="diamond" type="range" min="0" max="1" step="0.001" value="0.16" oninput="getValue('rangeDiamond', 'diamond')">Алмаз</p>
+            <p class="topaz"><input class="stone" name="topaz" id="topaz" type="range" min="0" max="1" step="0.001" value="0.16" oninput="getValue('rangeTopaz', 'topaz')">Топаз</p>
             <button class="login100-form-btn" type="submit" name="saveStones">
                 Выбрать камни
             </button>
@@ -247,11 +245,11 @@ if (isset($_POST['saveStones'])) {
     </div>
 
 
-    <div class="limiter2">
+    <div class="limiter3">
     <span class="login104-form-title">
             Полученные:
         </span>
-        <form class="back1" name="getstones">
+        <form class="back3" name="getstones">
             <p class="amethyst"><input type="checkbox" name="Аметист" value="Аметист">Аметист</p>
             <p class="sapphire"><input type="checkbox" name="Сапфир" value="Сапфир">Сапфир</p>
             <p class="emerald"><input type="checkbox" name="Изумруд" value="Изумруд">Изумруд</p>
@@ -265,7 +263,7 @@ if (isset($_POST['saveStones'])) {
     <span class="login104-form-title">
             Принять:
         </span>
-        <form class="back1" name="givemestones">
+        <form class="back3" name="givemestones">
             <p class="amethyst"><input type="checkbox" name="Аметист" value="Аметист">Аметист</p>
             <p class="sapphire"><input type="checkbox" name="Сапфир" value="Сапфир">Сапфир</p>
             <p class="emerald"><input type="checkbox" name="Изумруд" value="Изумруд">Изумруд</p>
@@ -275,7 +273,7 @@ if (isset($_POST['saveStones'])) {
     </div>
 </div>
 <div id="footer">
-    <p class="x2">Дата регистрации: <?php echo $heredatereg ?>
+    <p class="x3">Дата регистрации: <?php echo $heredatereg ?>
         Дата последней авторизации: <?php echo $heredateaut ?></p>
 </div>
 <?php include "footer.php"; ?>

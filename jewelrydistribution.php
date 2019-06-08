@@ -6,11 +6,12 @@ loginCheck();
 
 $tohello = $_SESSION['login'];
 
-$getinfo = $pdo->prepare("SELECT id, type, dateadd, gnome, elf FROM stonesinfo WHERE status='free'");
+$getinfo = $pdo->prepare("SELECT id, type, dateadd, gnome, elf FROM stonesinfo WHERE status='Активен'");
 $getinfo->execute([]);
 
 ?>
 <?php include "header.php"; ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css">
 <link rel="stylesheet" type="text/css" href="css/cssalljewelry.css">
 
 <div class="jumbotron">
