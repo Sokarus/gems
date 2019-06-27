@@ -27,9 +27,14 @@ div.container {
     display: inline-block;
 }
 
-div.inline {
+#distribute {
     display: inline-block;
 }
+
+#distributeAccess {
+    display: inline-block;
+}
+
 
 div.limiter1 {
     margin: 0%;
@@ -39,6 +44,7 @@ div.limiter1 {
 
 div.limiter2 {
     margin: 0%;
+    /* padding-left: 120px; */
     /* padding: 20%; */
     display: inline-block;
 }
@@ -46,17 +52,6 @@ div.limiter2 {
 div.limiter3 {
     margin: 0%;
     display: inline-block;
-}
-
-#zatemnenie {
-    background: rgba(102, 102, 102, 0.5);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    z-index: 99999;
 }
 
 a {
@@ -152,6 +147,10 @@ a:hover {
 
 div.ui {
     display: inline-block;
+    max-width: 407px;
+    width: 100%;
+    height: 70%;
+    overflow: scroll;
 }
 
 table.ui {
@@ -161,10 +160,6 @@ table.ui {
     color: white;
 }
 
-div.scroll {
-    max-height: 215px;
-    overflow-y: scroll;
-}
 /* ячейки таблицы */
 
 table.ui td {

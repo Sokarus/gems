@@ -16,30 +16,13 @@ function range(elementIn, elementOut) {
     outer.innerHTML = inner.value;
 }
 
-
-function getValue(outer, inner) {
-    //data() jquery мне нужно
-    // var arrStones = $(".stone"); 
-    // var step = + stoneIn.getAttribute("step")
-    var stoneOut = document.getElementById(outer);
-    var stoneIn = document.getElementById(inner).value;
-    // jQuery.data("step", stoneIn);
-    // var difference = step / (arrStones.length - 1);
-    stoneOut.innerHTML = Math.ceil((stoneIn) * 100) / 100;
-    //в сумме всегда 1 , при убавлении везде расределялось поровну , что бы при открытии по дефолту значения были одинаковы.
-}
-
-
-
-
-
 function getUserLogin(elementIn, elementOut) {
     var inner = document.getElementById(elementIn);
     var outer = document.getElementById(elementOut);
     outer.value = inner.innerHTML;
 }
 
-var img_dir = "/i/"; // папка с картинками
+var img_dir = "/js/i/"; // папка с картинками
 var sort_case_sensitive = false; // вид сортировки (регистрозависимый или нет)
 
 // ф-ция, определяющая алгоритм сортировки
@@ -232,56 +215,424 @@ $("#input2").jSearch({
 
 
 
-function getValuezzz() {
-    var quantityStones = $(".stone").length; // тут количество всех камней
 
-    var pAm = document.getElementById('rangeAmethyst');
-    var pSa = document.getElementById('rangeSapphire');
-    var pEm = document.getElementById('rangeEmerald');
-    var pRu = document.getElementById('rangeRuby');
-    var pDi = document.getElementById('rangeDiamond');
-    var pTo = document.getElementById('rangeTopaz');
+//                       AJAX
+// index.php
+$('button#submit').on('click', function () {
+    var login = $('input#login').val();
+    var password = $('input#password').val();
+    var index = "index";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { login: login, password: password, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "elf") {
+            location.href = "/elfpage.php";
+        }
+        if (msg == "gnome") {
+            location.href = "/gnomepage.php";
+        }
+        if (msg == "mastergnome") {
+            location.href = "/alljewelry.php";
+        }
+        if (msg !== "elf" && msg !== "gnome" && msg !== "mastergnome") {
+            $('div#okno').text("Ошибка авторизации: " + msg);
+            location.href = "#zatemnenie";
+        }
+    })
+});
 
-    var Am = document.getElementById('amethyst');
-    var Sa = document.getElementById('sapphire');
-    var Em = document.getElementById('emerald');
-    var Ru = document.getElementById('ruby');
-    var Di = document.getElementById('diamond');
-    var To = document.getElementById('topaz');
+// allusers.php 
+$('button#registrationall').on('click', function () {
+    var name = $('input#name').val();
+    var login = $('input#login').val();
+    var password = $('input#password').val();
+    var password2 = $('input#password2').val();
+    var elf = $('input#elf:checked', '#myForm').val(); // тут либо elf либо undefined
+    var gnome = $('input#gnome:checked', '#myForm').val();
+    var mastergnome = $('input#mastergnome:checked', '#myForm').val();
+    var index = "registrationall";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { name: name, login: login, password: password, password2: password2, elf: elf, gnome: gnome, mastergnome: mastergnome, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "elf" || msg == "gnome" || msg == "mastergnome") {
+            location.href = "/allusers.php";
+        }
+        if (msg !== "elf" && msg !== "gnome" && msg !== "mastergnome") {
+            $('div#okno').text("Ошибка авторизации: " + msg);
+            location.href = "#zatemnenie";
+        }
+    })
+});
 
-    var difference =
+// registration.php 
+$('button#registration').on('click', function () {
+    var name = $('input#name').val();
+    var login = $('input#login').val();
+    var password = $('input#password').val();
+    var password2 = $('input#password2').val();
+    var elf = $('input#elf:checked', '#myForm').val(); // тут либо elf либо undefined
+    var gnome = $('input#gnome:checked', '#myForm').val();
+    var mastergnome = $('input#mastergnome:checked', '#myForm').val();
+    var index = "registration";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { name: name, login: login, password: password, password2: password2, elf: elf, gnome: gnome, mastergnome: mastergnome, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "elf" || msg == "gnome" || msg == "mastergnome") {
+            location.href = "/autorization.php";
+        }
+        if (msg !== "elf" && msg !== "gnome" && msg !== "mastergnome") {
+            $('div#okno').text("Ошибка авторизации: " + msg);
+            location.href = "#zatemnenie";
+        }
+    })
+});
 
-        pAm.innerHTML = Am.value;
-    pSa.innerHTML = Sa.value;
-    pEm.innerHTML = Em.value;
-    pRu.innerHTML = Ru.value;
-    pDi.innerHTML = Di.value;
-    pTo.innerHTML = To.value;
-    if (Number(Am.value) + Number(Sa.value) + Number(Em.value) + Number(Ru.value) + Number(Di.value) + Number(To.value) > 1) {
-        if (Number(Am.value) > 0) {
-            Am.value = Am.value - 0.16;
-            pAm.innerHTML = Am.value;
+// elfpage.php -----> name
+$('button#changename').on('click', function () {
+    var name = $('input#namechange').val();
+    var login = $('input#herelogin').val();
+    var index = "chname";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { name: name, login: login, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg !== "ok") {
+            $('div#okno').text(msg);
+            location.href = "#zatemnenie";
+        } else {
+            location.href = "/elfpage.php";
         }
-        if (Number(Sa.value) > 0) {
-            Sa.value = Sa.value - 0.16;
-            pSa.innerHTML = Sa.value;
+    })
+});
+
+// elfpage.php -----> login
+$('button#changelogin').on('click', function () {
+    var loginchange = $('input#loginchange').val();
+    var login = $('input#herelogin').val();
+    var index = "chlogin";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { loginchange: loginchange, login: login, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg !== "ok") {
+            $('div#okno').text(msg);
+            location.href = "#zatemnenie";
+        } else {
+            location.href = "/elfpage.php";
         }
-        if (Number(Em.value) > 0) {
-            Em.value = Em.value - 0.16;
-            pEm.innerHTML = Em.value;
+    })
+});
+
+// elfpage.php -----> password
+$('button#changepassword').on('click', function () {
+    var password = $('input#passwordchange').val();
+    var login = $('input#herelogin').val();
+    var index = "chpassword";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { password: password, login: login, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg !== "ok") {
+            $('div#okno').text(msg);
+            location.href = "#zatemnenie";
+        } else {
+            location.href = "/elfpage.php";
         }
-        if (Number(Ru.value) > 0) {
-            Ru.value = Ru.value - 0.16;
-            pRu.innerHTML = Ru.value;
-        }
-        if (Number(Di.value) > 0) {
-            Di.value = Di.value - 0.16;
-            pDi.innerHTML = Di.value;
-        }
-        if (Number(To.value) > 0) {
-            To.value = To.value - 0.16;
-            pTo.innerHTML = To.value;
-            //в сумме всегда 1 , при убавлении везде расределялось поровну , что бы при открытии по дефолту значения были одинаковы.
-        }
-    }
+    })
+});
+
+// elfpage.php -----> stonesmove
+function getValuetest(input, output) {
+    var inner = document.getElementById(input);
+    var outer = document.getElementById(output);
+    outer.innerHTML = inner.value;
 }
+
+// elfpage.php -----> stones
+$('button#saveStones').on('click', function () {
+    var login = $('input#herelogin').val();
+    var index = "chstones";
+    var amethyst = $('input#amethyst').val();
+    var sapphire = $('input#sapphire').val();
+    var emerald = $('input#emerald').val();
+    var ruby = $('input#ruby').val();
+    var diamond = $('input#diamond').val();
+    var topaz = $('input#topaz').val();
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            login: login,
+            index: index,
+            amethyst: amethyst,
+            sapphire: sapphire,
+            emerald: emerald,
+            ruby: ruby,
+            diamond: diamond,
+            topaz: topaz
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            location.href = "/elfpage.php";
+        } else {
+            alert(msg);
+        }
+    })
+});
+
+// gnomepage.php -----> name
+$('button#changenamegn').on('click', function () {
+    var name = $('input#namechange').val();
+    var login = $('input#herelogin').val();
+    var index = "chname";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { name: name, login: login, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg !== "ok") {
+            $('div#okno').text(msg);
+            location.href = "#zatemnenie";
+        } else {
+            location.href = "/gnomepage.php";
+        }
+    })
+});
+
+// gnomepage.php -----> login
+$('button#changelogingn').on('click', function () {
+    var loginchange = $('input#loginchange').val();
+    var login = $('input#herelogin').val();
+    var index = "chlogingn";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { loginchange: loginchange, login: login, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg !== "ok") {
+            $('div#okno').text(msg);
+            location.href = "#zatemnenie";
+        } else {
+            location.href = "/gnomepage.php";
+        }
+    })
+});
+
+// gnomepage.php -----> password
+$('button#changepasswordgn').on('click', function () {
+    var password = $('input#passwordchange').val();
+    var login = $('input#herelogin').val();
+    var index = "chpassword";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: { password: password, login: login, index: index },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg !== "ok") {
+            $('div#okno').text(msg);
+            location.href = "#zatemnenie";
+        } else {
+            location.href = "/gnomepage.php";
+        }
+    })
+});
+
+// jewelry.php -----> addstones
+$('button#pushstones').on('click', function () {
+    var login = $('input#herelogin').val();
+    var index = "pushstones";
+    var amethyst = $('input#Am').val();
+    var sapphire = $('input#Sa').val();
+    var emerald = $('input#Em').val();
+    var ruby = $('input#Ru').val();
+    var diamond = $('input#Di').val();
+    var topaz = $('input#To').val();
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            login: login,
+            index: index,
+            amethyst: amethyst,
+            sapphire: sapphire,
+            emerald: emerald,
+            ruby: ruby,
+            diamond: diamond,
+            topaz: topaz
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            $('div#okno').text("Камни успено добавлены!");
+            location.href = "#zatemnenie";
+        } else {
+            alert(msg);
+        }
+    })
+});
+
+// jewelry.php -----> ok
+$('a#closegn').on('click', function () {
+    location.href = "/gnomepage.php";
+});
+
+// alljewelry.php -----> delete
+$('.delete#deletestone').on('click', function (e) {
+    var idValue = e.target.getAttribute("data-row-id");
+    var index = "deletestone";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            index: index,
+            idValue: idValue
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            $('div#okno').text("Камень удалён!");
+            location.href = "#zatemnenie";
+        }
+    })
+});
+
+// allusers.php -----> deleteelf
+$('.delete#deleteelf').on('click', function (e) {
+    var login = e.target.getAttribute("data-row-id");
+    var index = "deleteelf";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            index: index,
+            login: login
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            $('div#okno').text("Эльф удалён!");
+            location.href = "#zatemnenie";
+        }
+    })
+});
+
+// allusers.php -----> deletegnome
+$('.delete#deletegnome').on('click', function (e) {
+    var login = e.target.getAttribute("data-row-id");
+    var index = "deletegnome";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            index: index,
+            login: login
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            $('div#okno').text("Гном удалён!");
+            location.href = "#zatemnenie";
+        }
+    })
+});
+
+// alljewelry.php -----> ok
+$('a#closeall').on('click', function () {
+    location.href = "/alljewelry.php";
+});
+
+// alljewelry.php -----> ok
+$('a#closeallusers').on('click', function () {
+    location.href = "/allusers.php";
+});
+
+// jewelrydistribution.php -----> ok
+$('a#closerefr').on('click', function () {
+    location.href = "/jewelrydistribution.php";
+});
+
+// settings.php -----> access
+$('button#access').on('click', function () {
+    var index = "access";
+    var fair = $('input#fair').val();
+    var weekly = $('input#weekly').val();
+    var prefer = $('input#prefer').val();
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            index: index,
+            fair: fair,
+            weekly: weekly,
+            prefer: prefer
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            location.href = "/settings.php";
+        }
+    })
+});
+
+// jewelrydistribution.php -----> distribute
+$('button#distribute').on('click', function () {
+    var index = "distribute";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            index: index,
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            location.href = "/jewelrydistribution.php";
+        } else {
+            alert(msg);
+        }
+    })
+});
+
+// jewelrydistribution.php -----> distributeAccess
+$('button#distributeAccess').on('click', function () {
+    var index = "distributeAccess";
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            index: index,
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            $('div#okno').text("Камни распределены!");
+            location.href = "#zatemnenie";
+        }
+    })
+});
+
+// elfpage.php -----> acceptStone
+$('.getStone#getStone').on('click', function (e) {
+    var id = e.target.getAttribute("data-row-id");
+    var index = "acceptStone";
+    var login = $('input#herelogin').val();
+    $.ajax({
+        url: 'js/userinfo.php',
+        data: {
+            id: id,
+            index: index,
+            login: login
+        },
+        type: 'post'
+    }).done(function (msg) {
+        if (msg == "ok") {
+            $('div#okno').text("Камень получен!");
+            location.href = "/elfpage.php";
+        } else {alert(msg);}
+    })
+});
+//$('.ui.table tr').on('click', function (e) {
+  //  alert(e.target.parentElement.getAttribute("data-row-id"));
+    // $(e.target.parentElement).remove();

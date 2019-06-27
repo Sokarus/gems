@@ -125,11 +125,6 @@ form.back4 {
     text-align: center;
 }
 
-div.jewelry {
-    padding-top: 20px;
-    padding-left: 120px;
-}
-
 div.jewelryHi {
     padding-top: 30px;
     padding-left: 100px;
@@ -278,54 +273,54 @@ p.diamond3 {
 }
 
 input.amethyst4 {
-    font-size: 130%;
+    font-size: 100%;
     color: violet;
-    width: 20%;
+    width: 30%;
     background-color: #00000000;
     text-align: center;
     padding-left: 15px;
 }
 
 input.sapphire4 {
-    font-size: 130%;
+    font-size: 100%;
     color: blue;
-    width: 20%;
+    width: 30%;
     background-color: #00000000;
     text-align: center;
     padding-left: 15px;
 }
 
 input.emerald4 {
-    font-size: 130%;
+    font-size: 100%;
     color: green;
-    width: 20%;
+    width: 30%;
     background-color: #00000000;
     text-align: center;
     padding-left: 15px;
 }
 
 input.ruby4 {
-    font-size: 130%;
+    font-size: 100%;
     color: red;
-    width: 20%;
+    width: 30%;
     background-color: #00000000;
     text-align: center;
     padding-left: 15px;
 }
 
 input.diamond4 {
-    font-size: 130%;
+    font-size: 100%;
     color: white;
-    width: 20%;
+    width: 30%;
     background-color: #00000000;
     text-align: center;
     padding-left: 15px;
 }
 
 input.topaz4 {
-    font-size: 130%;
+    font-size: 100%;
     color: yellow;
-    width: 20%;
+    width: 30%;
     background-color: #00000000;
     text-align: center;
     padding-left: 15px;
@@ -359,27 +354,6 @@ span.intDiamond {
 span.intTopaz {
     font-size: 150%;
     color: yellow;
-}
-
-div.intStones {
-    /* Размеры */
-    background: rgba(0, 0, 0, 0.596);
-    /* Цвет фона */
-    border: 3px solid #fff;
-    /* Белая рамка */
-    border-radius: 10px;
-    /* Радиус скругления */
-    display: inline-block;
-    border: 2px solid transparent;
-    /* Невидимая рамка */
-    text-align: center;
-    display: inline-block;
-    width: 50px;
-}
-
-div.intStones:hover {
-    border: 2px solid black;
-    /* Чёрная рамка */
 }
 
 input[type=range] {

@@ -14,64 +14,25 @@ if ($row[0] == "elf") {
     die("Эльфу сюда нельзя!");
 }
 
-if (isset($_POST["save"])) {
-    $date = date("Y-m-d H:i:s");
-    $amethyst = 0 + $_POST["Am"];
-    $sapphire = 0 + $_POST["Sa"];
-    $emerald = 0 + $_POST["Em"];
-    $ruby = 0 + $_POST["Ru"];
-    $diamond = 0 + $_POST["Di"];
-    $topaz = 0 + $_POST["To"];
-    $stonesarr = [$amethyst, $sapphire, $emerald, $ruby, $diamond, $topaz];
-    if ($stonesarr[0] > 0) {
-        for ($i = 1; $i <= $stonesarr[0]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, condition, status) VALUES ('Аметист', ?, ?, 'Свободен', 'Активен')");
-            $addStones->execute([$tohello, $date]);
-        }
-    }
-    if ($stonesarr[1] > 0) {
-        for ($i = 1; $i <= $stonesarr[1]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, condition, status) VALUES ('Сапфир', ?, ?, 'Свободен', 'Активен')");
-            $addStones->execute([$tohello, $date]);
-        }
-    }
-    if ($stonesarr[2] > 0) {
-        for ($i = 1; $i <= $stonesarr[2]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, condition, status) VALUES ('Изумруд', ?, ?, 'Свободен', 'Активен')");
-            $addStones->execute([$tohello, $date]);
-        }
-    }
-    if ($stonesarr[3] > 0) {
-        for ($i = 1; $i <= $stonesarr[3]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, condition, status) VALUES ('Рубин', ?, ?, 'Свободен', 'Активен')");
-            $addStones->execute([$tohello, $date]);
-        }
-    }
-    if ($stonesarr[4] > 0) {
-        for ($i = 1; $i <= $stonesarr[4]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, condition, status) VALUES ('Алмаз', ?, ?, 'Свободен', 'Активен')");
-            $addStones->execute([$tohello, $date]);
-        }
-    }
-    if ($stonesarr[5] > 0) {
-        for ($i = 1; $i <= $stonesarr[5]; $i++) {
-            $addStones = $pdo->prepare("INSERT INTO stonesinfo (type, gnome, dateadd, condition, status) VALUES ('Топаз', ?, ?, 'Свободен', 'Активен')");
-            $addStones->execute([$tohello, $date]);
-        }
-    }
-}
 ?>
 <?php include "header.php"; ?>
 <link rel="stylesheet" type="text/css" href="css/cssjewelry.css">
 
+<div id="zatemnenie">
+    <div id="okno"></div>
+    <a href="#" class="close" id="closegn">X</a>
+</div>
+
+<input id="herelogin" value=<?php echo "$tohello" ?>>
+
 <div class="jumbotron">
     <div class="container">
-            <p class="x1">Привет, <?php echo "$tohello" ?> !</p>
+        <p class="x1">Привет, <?php echo "$tohello" ?> !</p>
     </div>
 </div>
 
 <div class="jewelry">
-    <form class="back3" method="POST">
+    <div class="back3">
         <p class="amethyst2"><a class="button29" id="plusAm" onclick="plusStone('Am')">+</a><input class="amethyst4" type="number" id="Am" name="Am" value="0" readonly><a class="button29" id="minusAm" onclick="minusStone('Am')">-</a>Аметист</p>
         <br>
         <p class="sapphire2"><a class="button29" id="plusSa" onclick="plusStone('Sa')">+</a><input class="sapphire4" type="number" id="Sa" name="Sa" value="0" readonly><a class="button29" id="minusSa" onclick="minusStone('Sa')">-</a>Сапфир</p>
@@ -84,10 +45,10 @@ if (isset($_POST["save"])) {
         <br>
         <p class="topaz2"><a class="button29" id="plusTo" onclick="plusStone('To')">+</a><input class="topaz4" type="number" id="To" name="To" value="0" readonly><a class="button29" id="minusTo" onclick="minusStone('To')">-</a>Топаз</p>
         <br>
-        <button class="login100-form-btn" type="submit" name="save">
+        <button class="login100-form-btn" type="submit" id="pushstones" name="pushstones">
             Добавить камни
         </button>
-    </form>
+    </div>
 </div>
 
 <?php include "footer.php"; ?>
